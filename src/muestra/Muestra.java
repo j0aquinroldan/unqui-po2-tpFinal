@@ -31,7 +31,7 @@ public class Muestra {
 		this.opiniones = new ArrayList<Opinion>();	
 		this.setAutor(autor);
 		this.setUbicacion(autor.getUbicacion());
-		this.fecha = LocalDate().now();
+		this.fecha = LocalDate.now();
 		// agregar funcinones del observer
 	}
 	
