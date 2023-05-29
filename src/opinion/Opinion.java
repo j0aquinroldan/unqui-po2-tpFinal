@@ -1,23 +1,37 @@
 package opinion;
 
+import java.time.LocalDate;
+
+import estados.Nivel;
 import participantes.Participante;
 
 public class Opinion {
-	private String especie;
-	private String nivel;
+	private TipoDeOpinion tipoDeOpinion;
+	private Nivel nivel;
 	private Participante autor;
+	private LocalDate fechaDeCreacion;
 	
-	public Opinion(String especie, Participante autor) {
-		this.especie = especie;
-		this.autor= autor;
-		this.nivel = autor.getNivel().toString(); // REVISAR
+	public Opinion(TipoDeOpinion tipodeopinion, Participante autor, LocalDate fechaDeCreacion) {
+		this.tipoDeOpinion = tipoDeOpinion;
+		this.autor= autor; 
+		this.nivel = autor.getNivel(); // REVISAR
 	}
 
 	public Participante getAutor() {
 		return autor;
 	}
 
+	public LocalDate getFecha() {
+		// TODO Auto-generated method stub
+		return this.fechaDeCreacion;
+	}
 	
+	public TipoDeOpinion getTipoDeOpinion() {
+		return tipoDeOpinion;
+	}
 	
+	public Nivel getNivel() {
+		return nivel;
+	}
 
 }

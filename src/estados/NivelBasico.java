@@ -4,11 +4,6 @@ import muestra.Muestra;
 import participantes.Participante;
 
 public class NivelBasico extends Nivel {
-
-	
-
-	
-
 	@Override
 	public boolean isBasico() {
 		return true;
@@ -24,21 +19,20 @@ public class NivelBasico extends Nivel {
 		return "NivelBasico";
 	}
 
+	@Override
+	protected void actualizarNivel(Participante participante) {
+		//SI NO SE CUMPLE LA CONDICION PARA CONTINUAR, EL NIVEL CAMBIA
+		if(!(this.puedeMantenerSuNivel(participante))) {
+			participante.setNivel(new NivelExperto());
+		}
+	} 
 
 	@Override
-	public void recolectar(Participante participante, Muestra m) {
-		// TODO Auto-generated method stub
+	public boolean puedeMantenerSuNivel(Participante participante) {
+		return participante.revisionesDeLosUltimos30Dias().size() < 20 && participante.enviosDeLosUltimos30Dias().size() < 10;
+		//EL PARTICIPANTE DEVUELVE LAS REVISIONES Y ENVIOS DE LOS ULTIMOS 30 DIAS CON UN MENSAJE
 		
 	}
-
-	@Override
-	protected void actualizarNivel(Participante p) {
-		if(p.getRevisiones().size() >20 && p.getEnvios().size()>10) {
-			// FALTA VALIDAR LAS FECHAS DE REVISIONES Y ENVIOS
-			p.setNivel(new NivelExperto());
-		}
-	}
-	
 	
 
 }

@@ -1,5 +1,6 @@
 package participantes;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import estados.Nivel;
 import estados.NivelBasico;
 import muestra.Muestra;
 import opinion.Opinion;
+import opinion.TipoDeOpinion;
 import ubicacion.Ubicacion;
 
 public class Participante {
@@ -47,18 +49,19 @@ public class Participante {
 	
 	public List<Muestra> getEnvios() {
 		return envios;
-	}
+	} 
 	
 	
 	// OTROS MENSAJES
-	public void recolectar(Muestra m) {
-		this.nivel.recolectar(this, m);
-		this.envios.add(m);
+	public void recolectar(TipoDeOpinion tipo, LocalDate fecha) {
+		Muestra muestra = new Muestra(this, fecha);
+		this.opinar(muestra, tipo, fecha);
+		this.nivel.recolectar(this, muestra);
 	}
 
-	public void opinar(Muestra m, String s) {
-		this.nivel.opinar(this, m, s);
-		// nivel tiene que agregar opinion a la list de revisipones
+	public void opinar(Muestra m, TipoDeOpinion tipo, LocalDate fechaDeCreacion) {
+		this.nivel.opinar(this, m, tipo, fechaDeCreacion);
+		// nivel tiene que agregar opinion a la list de revisiones
 	}
 
 	public Nivel getNivel() {
@@ -71,5 +74,17 @@ public class Participante {
 
 	public boolean yaOpinoSobre(Muestra m) {
 		return m.getOpiniones().stream().anyMatch(o -> o.getAutor().equals(this));
+	}
+
+	public List<Muestra> enviosDeLosUltimos30Dias() {
+		return this.envios.stream().filter(muestra -> muestra.getFecha().isAfter(LocalDate.now().minusDays(30))).toList();
+	}
+
+	public List<Opinion> revisionesDeLosUltimos30Dias() {
+		return this.revisiones.stream().filter(opinion -> opinion.getFecha().isAfter(LocalDate.now().minusDays(30))).toList();
+	}
+
+	public void agregarMuestra(Muestra muestra) {
+		this.envios.add(muestra);
 	}
 }

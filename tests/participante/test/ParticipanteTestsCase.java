@@ -4,10 +4,15 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import estados.NivelBasico;
+import estados.NivelExperto;
+import opinion.TipoDeOpinion;
+import opinion.Opinion;
 import participantes.Participante;
 import ubicacion.Ubicacion;
 
@@ -33,6 +38,14 @@ public class ParticipanteTestsCase {
 		assertEquals(u, p.getUbicacion());
 		assertTrue(p.getNivel().isBasico());
 	}
-
+	
+	@Test
+	public void sd() {
+		p.setNivel(new NivelBasico());
+		Opinion op = new Opinion(TipoDeOpinion.CHINCHE_FOLIADA, p, LocalDate.now());
+		p.setNivel(new NivelExperto());
+		assertTrue(op.getNivel().isBasico()); 
+	}
+	
 	
 }
