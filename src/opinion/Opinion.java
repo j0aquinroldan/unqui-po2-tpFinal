@@ -30,8 +30,12 @@ public class Opinion {
 		return tipoDeOpinion;
 	}
 	
-	public Nivel getNivel() {
-		return nivel;
+	public boolean isBasico() {
+		return nivel.isBasico();
+	}
+	
+	public boolean isExperto() {
+		return nivel.isExperto();
 	}
 
 }

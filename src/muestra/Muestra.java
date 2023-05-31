@@ -3,8 +3,6 @@ package muestra;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import opinion.Opinion;
 import opinion.TipoDeOpinion;
@@ -40,16 +38,8 @@ public class Muestra {
 		// agregar funcinones del observer
 	}
 	
-	public TipoDeOpinion resultadoActual() {
-		List<TipoDeOpinion> tipos = this.opiniones.stream().map(opinion -> opinion.getTipoDeOpinion()).toList();
-		return tipos.stream().collect(Collectors.groupingBy(tipo -> tipo, Collectors.counting())).entrySet().stream().collect(Collectors.maxBy(Map.Entry.comparingByValue())).get().getKey();
-	}
+////GETS Y SETS
 	
-	private LocalDate LocalDate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	private void setUbicacion(Ubicacion ubicacion) {
 		this.ubicacion = ubicacion;
 	}
@@ -69,12 +59,7 @@ public class Muestra {
 	public boolean isVerificada() {
 		return verificada;
 	}
-
-	public void agregarOpinion(Opinion o ) {
-		this.opiniones.add(o);
-		// agregar funcinones del observer
-	}
-
+	
 	public List<Opinion> getOpiniones() {
 		return this.opiniones;
 	}
@@ -82,8 +67,26 @@ public class Muestra {
 	public LocalDate getFecha() {
 		return fecha;
 	}
+
+	public void setVerificada() {
+		this.verificada = true;
+	}
+
+	public void setEstado(EstadoDeMuestra estado) {
+		this.estado = estado;
+	}
 	
+//// MENSAJES PRINCIPALES
+
+	public TipoDeOpinion resultadoActual() {
+		return this.estado.resultadoActual(this);
+	}
 	
-	
+	public void agregarOpinion(Opinion opinion ) {
+		
+			this.estado.verificarOActualizar(this, opinion);
+			this.opiniones.add(opinion);
+			// agregar funcinones del observer
+	}
 	
 }

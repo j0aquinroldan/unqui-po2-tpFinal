@@ -35,6 +35,11 @@ public class NivelExperto extends Nivel {
 		// EL PARTICIPANTE DEVUELVE LAS REVISIONES Y ENVIOS DE LOS ULTIMOS 30 DIAS CON UN MENSAJE
 		
 	}
+
+	@Override
+	protected boolean puedeOpinar(Participante p, Muestra m) {
+		return true;
+	}
 	
 	
 

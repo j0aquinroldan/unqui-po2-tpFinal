@@ -33,6 +33,11 @@ public class NivelBasico extends Nivel {
 		//EL PARTICIPANTE DEVUELVE LAS REVISIONES Y ENVIOS DE LOS ULTIMOS 30 DIAS CON UN MENSAJE
 		
 	}
+
+	@Override
+	protected boolean puedeOpinar(Participante p, Muestra m) {
+		return m.getOpiniones().stream().allMatch(opinion -> opinion.isBasico());
+	}
 	
 
 }
