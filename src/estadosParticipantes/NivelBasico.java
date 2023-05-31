@@ -1,4 +1,4 @@
-package estados;
+package estadosParticipantes;
 
 import muestra.Muestra;
 import participantes.Participante;

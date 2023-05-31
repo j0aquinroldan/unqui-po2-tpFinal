@@ -9,8 +9,8 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import estados.NivelBasico;
-import estados.NivelExperto;
+import estadosParticipantes.NivelBasico;
+import estadosParticipantes.NivelExperto;
 import opinion.TipoDeOpinion;
 import opinion.Opinion;
 import participantes.Participante;

@@ -2,7 +2,7 @@ package opinion;
 
 import java.time.LocalDate;
 
-import estados.Nivel;
+import estadosParticipantes.Nivel;
 import participantes.Participante;
 
 public class Opinion {

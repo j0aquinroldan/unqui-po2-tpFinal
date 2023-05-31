@@ -1,4 +1,4 @@
-package estados;
+package estadosParticipantes;
 
 import java.time.LocalDate;
 

@@ -1,6 +1,6 @@
 package participantes;
 
-import estados.Nivel;
+import estadosParticipantes.Nivel;
 
 public class Especialista extends Participante {
 	

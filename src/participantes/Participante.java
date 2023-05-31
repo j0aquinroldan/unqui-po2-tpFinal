@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import estados.Nivel;
-import estados.NivelBasico;
+import estadosParticipantes.Nivel;
+import estadosParticipantes.NivelBasico;
 import muestra.Muestra;
 import opinion.Opinion;
 import opinion.TipoDeOpinion;
