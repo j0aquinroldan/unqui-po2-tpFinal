@@ -44,7 +44,7 @@ public class ParticipanteTestsCase {
 		p.setNivel(new NivelBasico());
 		Opinion op = new Opinion(TipoDeOpinion.CHINCHE_FOLIADA, p, LocalDate.now());
 		p.setNivel(new NivelExperto());
-		assertTrue(op.getNivel().isBasico()); 
+		assertTrue(op.isBasico()); 
 	}
 	
 	
