@@ -12,29 +12,30 @@ public abstract class Nivel {
 	public void opinar(Participante p, Muestra m, TipoDeOpinion tipoDeOpinion, LocalDate fechaDeCreacion) {
 		//TEMPLATE METHOD
 		
-		if(!p.yaOpinoSobre(m) && this.puedeOpinar(p,m) && !m.isVerificada()) {
+		if(!m.fueOpinadaPor(p) && this.puedeOpinar(m) && !m.isVerificada()) {
 			
 			Opinion o = new Opinion(tipoDeOpinion,p, fechaDeCreacion);
 			//STATE DE MUESTRA SE ENCARGA DE AGREGAR LA OPINION, 3 ESTADOS DIFERENTES DE LA MUESTRA
-			p.agregarOpinion(o);
-			m.agregarOpinion(o);
+			p.agregarOpinion(o); // test size opiniones
+			m.agregarOpinion(o); // verify mensaje enviado
 			
-			this.actualizarNivel(p); 
+			this.actualizarNivel(p); // asset niuvel esperado
 		}
 	}
 
-	protected abstract boolean puedeOpinar(Participante p, Muestra m);
 
 	protected abstract void actualizarNivel(Participante p);
 
 	public void recolectar(Participante participante, Muestra muestra) {
-		participante.agregarMuestra(muestra);
-		this.actualizarNivel(participante);
+		participante.agregarMuestra(muestra); // test size muestras
+		this.actualizarNivel(participante); // asset niuvel esperado
 	}
 	
 	public abstract boolean puedeMantenerSuNivel(Participante participante);
 	
 	public abstract boolean isBasico();
 	public abstract boolean isExperto();
+
+	protected abstract boolean puedeOpinar(Muestra m) ;
 }
 

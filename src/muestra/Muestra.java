@@ -88,5 +88,13 @@ public class Muestra {
 			this.opiniones.add(opinion);
 			// agregar funcinones del observer
 	}
+
+	public boolean fueOpinadaPor(Participante participante) {
+		return this.getOpiniones().stream().anyMatch(o -> o.getAutor().equals(participante));
+	}
+
+	public boolean soloOpinaronBasicos() {
+		return this.getOpiniones().stream().allMatch(opinion -> opinion.isBasico());
+	}
 	
 }

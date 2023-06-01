@@ -12,24 +12,23 @@ import opinion.TipoDeOpinion;
 import ubicacion.Ubicacion;
 
 public class Participante {
-	
+
 	private Nivel nivel;
 	private Ubicacion ubicacion;
 	private List<Muestra> envios;
 	private List<Opinion> revisiones;
-	
-	public  Participante(){
+
+	public Participante() {
 		nivel = new NivelBasico();
 		envios = new ArrayList<>();
 		revisiones = new ArrayList<>();
 	}
-	
-	public  Participante(Ubicacion ubicacion){
+
+	public Participante(Ubicacion ubicacion) {
 		nivel = new NivelBasico();
 		this.ubicacion = ubicacion;
 	}
-	
-	
+
 	// GETS Y SETS
 	public Ubicacion getUbicacion() {
 		return ubicacion;
@@ -42,16 +41,15 @@ public class Participante {
 	public void setNivel(Nivel nivel) {
 		this.nivel = nivel;
 	}
-	
+
 	public List<Opinion> getRevisiones() {
 		return revisiones;
 	}
-	
+
 	public List<Muestra> getEnvios() {
 		return envios;
-	} 
-	
-	
+	}
+
 	// OTROS MENSAJES
 	public void recolectar(TipoDeOpinion tipo, LocalDate fecha) {
 		Muestra muestra = new Muestra(this, fecha);
@@ -67,24 +65,30 @@ public class Participante {
 	public Nivel getNivel() {
 		return this.nivel;
 	}
-	
+
 	public void agregarOpinion(Opinion o) {
 		this.revisiones.add(o);
 	}
 
-	public boolean yaOpinoSobre(Muestra m) {
-		return m.getOpiniones().stream().anyMatch(o -> o.getAutor().equals(this));
-	}
-
 	public List<Muestra> enviosDeLosUltimos30Dias() {
-		return this.envios.stream().filter(muestra -> muestra.getFecha().isAfter(LocalDate.now().minusDays(30))).toList();
+		return this.envios.stream().filter(muestra -> muestra.getFecha().isAfter(LocalDate.now().minusDays(30)))
+				.toList();
 	}
 
 	public List<Opinion> revisionesDeLosUltimos30Dias() {
-		return this.revisiones.stream().filter(opinion -> opinion.getFecha().isAfter(LocalDate.now().minusDays(30))).toList();
+		return this.revisiones.stream().filter(opinion -> opinion.getFecha().isAfter(LocalDate.now().minusDays(30)))
+				.toList();
 	}
 
 	public void agregarMuestra(Muestra muestra) {
 		this.envios.add(muestra);
+	}
+
+	public int cantRevisionesDeLosUltimos30Dias() {
+		return this.revisionesDeLosUltimos30Dias().size();
+	}
+
+	public int cantEnviosDeLosUltimos30Dias() {
+		return this.enviosDeLosUltimos30Dias().size();
 	}
 }
