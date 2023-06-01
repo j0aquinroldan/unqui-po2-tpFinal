@@ -90,11 +90,11 @@ public class Muestra {
 	}
 
 	public boolean fueOpinadaPor(Participante participante) {
-		return this.getOpiniones().stream().anyMatch(o -> o.getAutor().equals(participante));
+		return this.getOpiniones().stream().anyMatch(o -> o.getAutor().equals(participante)); // testear t y f
 	}
 
 	public boolean soloOpinaronBasicos() {
-		return this.getOpiniones().stream().allMatch(opinion -> opinion.isBasico());
+		return this.getOpiniones().stream().allMatch(opinion -> opinion.isBasico()); // testear t y f
 	}
 	
 }
