@@ -49,5 +49,8 @@ public class MuestraTestCase {
 /*
  *  LO BASICO DE MUESTRA CODSEADO Y TESTEADO FALTA RESULTADO ACTUAL ETC
  */
+	public void testPush() {
+		
+	}
 
 }
