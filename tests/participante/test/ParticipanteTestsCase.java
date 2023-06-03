@@ -47,5 +47,8 @@ public class ParticipanteTestsCase {
 		assertTrue(op.isBasico()); 
 	}
 	
+	/*
+	 * prueba de pusheo
+	 */
 	
 }
