@@ -17,16 +17,17 @@ public class NivelBasico extends Nivel {
 	}
 
 	@Override
-	protected void actualizarNivel(Participante participante) {
+	public void actualizarNivel(Participante participante) {
 		//SI NO SE CUMPLE LA CONDICION PARA CONTINUAR, EL NIVEL CAMBIA
-		if(!(this.puedeMantenerSuNivel(participante))) {
+		if(!this.puedeMantenerSuNivel(participante)) {
 			participante.setNivel(new NivelExperto());
+//			participante.sum(0);
 		}
 	} 
 
 	@Override
 	public boolean puedeMantenerSuNivel(Participante participante) {
-		return participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now()) < 20 && participante.cantEnviosDeLosUltimos30Dias(LocalDate.now()) < 10;
+		return (participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())) < 20 && (participante.cantEnviosDeLosUltimos30Dias(LocalDate.now()) < 10);
 		//EL PARTICIPANTE DEVUELVE LAS REVISIONES Y ENVIOS DE LOS ULTIMOS 30 DIAS CON UN MENSAJE
 		
 	}
