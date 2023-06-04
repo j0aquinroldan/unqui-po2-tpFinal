@@ -2,6 +2,7 @@ package participante.test;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -153,12 +154,27 @@ public class ParticipanteTestsCase {
 
 	@Test
 	public void opinarTest() {
-		Nivel nivelMock = mock(NivelBasico.class);
-		participante.setNivel(nivelMock);
-
+		
+		assertTrue(participante.getRevisiones().isEmpty());
+		
+		when(muestra.fueOpinadaPor(participante)).thenReturn(false);
+		when(muestra.isVerificada()).thenReturn(false);
+		when(muestra.soloOpinaronBasicos()).thenReturn(true);
+		
+		
 		participante.opinar(muestra, TipoDeOpinion.CHINCHE_FOLIADA, LocalDate.of(2023, 6, 4));
 
-		verify(nivelMock).opinar(participante, muestra, TipoDeOpinion.CHINCHE_FOLIADA, LocalDate.of(2023, 6, 4));
+		assertFalse(participante.getRevisiones().isEmpty());
+	}
+	
+	@Test
+	public void recolectarTest() {
+		
+		assertTrue(participante.getEnvios().isEmpty());
+
+		participante.recolectar(TipoDeOpinion.CHINCHE_FOLIADA, LocalDate.of(2023, 6, 4));
+
+		assertFalse(participante.getEnvios().isEmpty());
 	}
 
 }
