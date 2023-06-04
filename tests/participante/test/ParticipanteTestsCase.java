@@ -18,15 +18,15 @@ import ubicacion.Ubicacion;
 
 public class ParticipanteTestsCase {
 	
-	Participante p;
-	Ubicacion u;
+	Participante participante;
+	Ubicacion ubicacion;
 	NivelBasico nb;
 	
 	@BeforeEach
 	public void setup() {
-		u = mock(Ubicacion.class);
+		ubicacion = mock(Ubicacion.class);
 		nb = mock(NivelBasico.class);
-		p = new Participante(u);
+		participante = new Participante(ubicacion);
 	}
 	
 	
@@ -35,20 +35,28 @@ public class ParticipanteTestsCase {
 	 */
 	@Test
 	public void constructorTest() {
-		assertEquals(u, p.getUbicacion());
-		assertTrue(p.getNivel().isBasico());
-	}
-	
-	@Test
-	public void sd() {
-		p.setNivel(new NivelBasico());
-		Opinion op = new Opinion(TipoDeOpinion.CHINCHE_FOLIADA, p, LocalDate.now());
-		p.setNivel(new NivelExperto());
-		assertTrue(op.isBasico()); 
+		assertEquals(ubicacion, participante.getUbicacion()); // misma ubicacion con la que se seteo
+		assertTrue(participante.getNivel().isBasico());
 	}
 	
 	/*
-	 * prueba de pusheo
+	 * cuando un se genera una opinion, esta considera el estado del participante(básico o experto) al
+	 *	momento del voto
 	 */
+	@Test
+	public void opinionMantieneElNivelConElQueFueCreada() {
+//		participante.setNivel(new NivelBasico());
+		Opinion op = new Opinion(TipoDeOpinion.CHINCHE_FOLIADA, participante, LocalDate.now());
+		participante.setNivel(new NivelExperto());
+		assertTrue(op.isBasico()); 
+	}
+	
+	@Test
+	public void setUbicacionTest() {
+		participante.setUbicacion(ubicacion);
+		assertEquals(ubicacion, participante.getUbicacion());
+	}
+	
+	
 	
 }
