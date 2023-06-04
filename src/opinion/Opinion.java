@@ -15,6 +15,7 @@ public class Opinion {
 		this.tipoDeOpinion = tipoDeOpinion;
 		this.autor= autor; 
 		this.nivel = autor.getNivel(); // REVISAR
+		this.fechaDeCreacion = fechaDeCreacion;
 	}
 
 	public Participante getAutor() {
