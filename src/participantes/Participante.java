@@ -96,4 +96,6 @@ public class Participante {
 	public int cantEnviosDeLosUltimos30Dias(LocalDate fecha) {
 		return this.enviosDeLosUltimos30Dias(fecha).size();
 	}
+	
+	public void sum(int i) {}
 }
