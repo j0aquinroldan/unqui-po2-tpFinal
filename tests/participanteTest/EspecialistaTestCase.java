@@ -1,4 +1,4 @@
-package participante.test;
+package participanteTest;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
