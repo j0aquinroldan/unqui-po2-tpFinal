@@ -3,7 +3,6 @@ package nivelTest;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -11,33 +10,32 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import estadosParticipantes.NivelBasico;
 import estadosParticipantes.NivelExperto;
 import participantes.Participante;
 
-public class NivelBasicoTestCase {
+public class NivelExpertoTestCase {
 	
-	NivelBasico nivelBasico;
+	NivelExperto nivelExperto;
 	Participante participante;
 	
 	@BeforeEach
 	public void setup() {
-		nivelBasico = new NivelBasico();
+		nivelExperto = new NivelExperto();
 		participante = mock(Participante.class);
 	}
 	
 	@Test
 	public void puedeMantenerSuNivelTest() {
 		
-		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(30);
-		assertFalse(nivelBasico.puedeMantenerSuNivel(participante));
+		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(0);
+		assertFalse(nivelExperto.puedeMantenerSuNivel(participante));
 	}
 	
 	@Test
 	public void puedeMantenerSuNivelTest2() {
 		
-		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(30);
-		assertFalse(nivelBasico.puedeMantenerSuNivel(participante));
+		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(0);
+		assertFalse(nivelExperto.puedeMantenerSuNivel(participante));
 	}
 	
 	@Test
@@ -45,8 +43,8 @@ public class NivelBasicoTestCase {
 		
 		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(30);
 		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(30);
-		nivelBasico.actualizarNivel(participante);
-		assertFalse(nivelBasico.puedeMantenerSuNivel(participante));
+		nivelExperto.actualizarNivel(participante);
+		assertTrue(nivelExperto.puedeMantenerSuNivel(participante));
 	}
 	
 	@Test
@@ -54,18 +52,24 @@ public class NivelBasicoTestCase {
 		
 		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(1);
 		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(1);
-		nivelBasico.actualizarNivel(participante);
-		assertTrue(nivelBasico.puedeMantenerSuNivel(participante));
+		nivelExperto.actualizarNivel(participante);
+		assertFalse(nivelExperto.puedeMantenerSuNivel(participante));
 	}
 	
 	@Test
 	public void isBasicoTest() {
-		assertTrue(nivelBasico.isBasico());
+		assertFalse(nivelExperto.isBasico());
 	}
 	
 	@Test
 	public void isExpertoTest() {
-		assertFalse(nivelBasico.isExperto());
+		assertTrue(nivelExperto.isExperto());
 	}
+	
+	@Test
+	public void puedeOpinarTest() {
+		assertTrue(nivelExperto.puedeOpinar(null));
+	}
+	
 
 }
