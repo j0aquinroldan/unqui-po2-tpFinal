@@ -97,5 +97,4 @@ public class Participante {
 		return this.enviosDeLosUltimos30Dias(fecha).size();
 	}
 	
-	public void sum(int i) {}
 }
