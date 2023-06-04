@@ -17,13 +17,9 @@ public class NivelExperto extends Nivel {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "NivelExperto";
-	}
 
 	@Override
-	protected void actualizarNivel(Participante participante) {
+	public void actualizarNivel(Participante participante) {
 		// SI NO SE CUMPLE LA CONDICION PARA CONTINUAR, EL NIVEL CAMBIA
 		if (!(this.puedeMantenerSuNivel(participante))) {
 			participante.setNivel(new NivelBasico());
@@ -39,7 +35,7 @@ public class NivelExperto extends Nivel {
 	}
 
 	@Override
-	protected boolean puedeOpinar(Muestra m) {
+	public boolean puedeOpinar(Muestra m) {
 		return true;
 	}
 
