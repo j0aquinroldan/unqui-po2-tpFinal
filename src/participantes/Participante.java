@@ -26,6 +26,8 @@ public class Participante {
 
 	public Participante(Ubicacion ubicacion) {
 		nivel = new NivelBasico();
+		envios = new ArrayList<>();
+		revisiones = new ArrayList<>();
 		this.ubicacion = ubicacion;
 	}
 
@@ -70,13 +72,16 @@ public class Participante {
 		this.revisiones.add(o);
 	}
 
-	public List<Muestra> enviosDeLosUltimos30Dias() {
-		return this.envios.stream().filter(muestra -> muestra.getFecha().isAfter(LocalDate.now().minusDays(30)))
+	public List<Muestra> enviosDeLosUltimos30Dias(LocalDate fecha) {
+		/*
+		 * el parametro fecha debe ser LocalDate.now()
+		 */
+		return this.envios.stream().filter(muestra -> muestra.getFecha().isAfter(fecha.minusDays(30)))
 				.toList();
 	}
 
-	public List<Opinion> revisionesDeLosUltimos30Dias() {
-		return this.revisiones.stream().filter(opinion -> opinion.getFecha().isAfter(LocalDate.now().minusDays(30)))
+	public List<Opinion> revisionesDeLosUltimos30Dias(LocalDate fecha) {
+		return this.revisiones.stream().filter(opinion -> opinion.getFecha().isAfter(fecha.minusDays(30)))
 				.toList();
 	}
 
@@ -84,11 +89,11 @@ public class Participante {
 		this.envios.add(muestra);
 	}
 
-	public int cantRevisionesDeLosUltimos30Dias() {
-		return this.revisionesDeLosUltimos30Dias().size();
+	public int cantRevisionesDeLosUltimos30Dias(LocalDate fecha) {
+		return this.revisionesDeLosUltimos30Dias(fecha).size();
 	}
 
-	public int cantEnviosDeLosUltimos30Dias() {
-		return this.enviosDeLosUltimos30Dias().size();
+	public int cantEnviosDeLosUltimos30Dias(LocalDate fecha) {
+		return this.enviosDeLosUltimos30Dias(fecha).size();
 	}
 }
