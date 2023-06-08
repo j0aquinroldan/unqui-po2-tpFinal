@@ -35,6 +35,7 @@ public class Muestra {
 		this.setAutor(autor);
 		this.setUbicacion(autor.getUbicacion());
 		this.fecha = LocalDate.now();
+		this.estado = new EstadoMuestraBasico();
 		// agregar funcinones del observer
 	}
 	
@@ -74,6 +75,10 @@ public class Muestra {
 
 	public void setEstado(EstadoDeMuestra estado) {
 		this.estado = estado;
+	}
+	
+	public EstadoDeMuestra getEstado() {
+		return estado;
 	}
 	
 //// MENSAJES PRINCIPALES
