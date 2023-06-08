@@ -19,12 +19,18 @@ public class EstadoMuestraExperto extends EstadoDeMuestra {
 	}
 
 	@Override
-	protected void verificarOActualizar(Muestra muestra, Opinion opinion) {
-		// verifica la muestra en caso de que se pueda
-		boolean anyMatch = muestra.getOpiniones().stream().anyMatch(opMuestra->opMuestra.getTipoDeOpinion().equals(opinion.getTipoDeOpinion()));
-		if (anyMatch) {
+	public void verificarOActualizar(Muestra muestra, Opinion opinion) {
+		// Verifica la muestra en caso de que se pueda.
+		boolean anyMatch = muestra.getOpinionesExpertas().stream().anyMatch(opMuestra->opMuestra.getTipoDeOpinion().equals(opinion.getTipoDeOpinion()));
+		if(anyMatch) {
 			muestra.setVerificada();
 		}
+	}
+
+	@Override
+	public boolean isExperto() {
+		// TODO Auto-generated method stub
+		return true;
 	} 
 
 }

@@ -2,6 +2,7 @@ package muestra;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import opinion.Opinion;
@@ -100,6 +101,10 @@ public class Muestra {
 
 	public boolean soloOpinaronBasicos() {
 		return this.getOpiniones().stream().allMatch(opinion -> opinion.isBasico()); // testear t y f
+	}
+
+	public List<Opinion> getOpinionesExpertas() {
+		return this.opiniones.stream().filter(opinion -> opinion.isExperto()).toList();
 	}
 	
 }

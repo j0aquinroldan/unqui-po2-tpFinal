@@ -20,4 +20,6 @@ public abstract class EstadoDeMuestra {
 				.entrySet().stream().collect(Collectors.maxBy(Map.Entry.comparingByValue())).get().getKey();
 	}
 
+	public abstract boolean isExperto();
+
 }

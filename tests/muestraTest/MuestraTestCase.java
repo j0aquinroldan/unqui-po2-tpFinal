@@ -90,4 +90,16 @@ public class MuestraTestCase {
 		this.muestra.agregarOpinion(opinion2);
 		assertFalse(this.muestra.soloOpinaronBasicos());
 	}
+	
+	@Test
+	public void testGetOpinionesExpertas() {
+		Opinion opinion1 = mock(Opinion.class);
+		Opinion opinion2 = mock(Opinion.class);
+		when(opinion1.isExperto()).thenReturn(false);
+		when(opinion2.isExperto()).thenReturn(true);
+		this.muestra.agregarOpinion(opinion1);
+		this.muestra.agregarOpinion(opinion2);
+		
+		assertEquals(opinion2, this.muestra.getOpinionesExpertas().get(0));
+	}
 }
