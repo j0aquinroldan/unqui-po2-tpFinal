@@ -76,4 +76,5 @@ public class UbicacionTestCase {
 	public void testPasarARadianes() {
 		assertEquals(0.5235987755982988, this.ubicacion1.convertirARadianes(30));
 	}
+	
 }
