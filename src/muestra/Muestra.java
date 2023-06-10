@@ -107,4 +107,12 @@ public class Muestra {
 		return this.opiniones.stream().filter(opinion -> opinion.isExperto()).toList();
 	}
 	
+	public List<Muestra> muestrasQueEstenAUnaDistanciaMenorA(List<Muestra> listaDeMuestras, double kilometros){
+		return listaDeMuestras.stream().filter(muestra -> muestra.laMuestraSeEncuentraAMenosDe(this, kilometros)).toList();
+	}
+
+	public boolean laMuestraSeEncuentraAMenosDe(Muestra muestra, double kilometros) {
+		return this.ubicacion.laUbicacionSeEncuentraAMenosDe(muestra.getUbicacion(), kilometros);
+	}
+	
 }

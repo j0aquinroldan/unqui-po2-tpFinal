@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -101,5 +102,27 @@ public class MuestraTestCase {
 		this.muestra.agregarOpinion(opinion2);
 		
 		assertEquals(opinion2, this.muestra.getOpinionesExpertas().get(0));
+	}
+	
+	@Test
+	public void testlaMuestraSeEncuentraAMenosDe() {
+		Muestra muestra2 = mock(Muestra.class);
+		Ubicacion ubicacion2 = mock(Ubicacion.class);
+		when(this.u.laUbicacionSeEncuentraAMenosDe(ubicacion2, 1000)).thenReturn(true);
+		when(muestra2.getUbicacion()).thenReturn(ubicacion2);
+		assertTrue(this.muestra.laMuestraSeEncuentraAMenosDe(muestra2, 1000));
+		verify(muestra2, times(1)).getUbicacion();
+		verify(this.u, times(1)).laUbicacionSeEncuentraAMenosDe(ubicacion2, 1000);
+	}
+	
+	@Test
+	public void testLasMuestrasQueSeEncuentrenAMenosDe() {
+		Muestra muestra2 = mock(Muestra.class);
+		Muestra muestra3 = mock(Muestra.class);
+		Muestra muestra4 = mock(Muestra.class);
+		when(muestra2.laMuestraSeEncuentraAMenosDe(this.muestra, 1000)).thenReturn(true);
+		when(muestra3.laMuestraSeEncuentraAMenosDe(this.muestra, 1000)).thenReturn(true);
+		when(muestra4.laMuestraSeEncuentraAMenosDe(this.muestra, 1000)).thenReturn(false);
+		assertEquals(Arrays.asList(muestra2, muestra3), this.muestra.muestrasQueEstenAUnaDistanciaMenorA(Arrays.asList(muestra2, muestra3, muestra4), 1000));
 	}
 }
