@@ -125,4 +125,5 @@ public class MuestraTestCase {
 		when(muestra4.laMuestraSeEncuentraAMenosDe(this.muestra, 1000)).thenReturn(false);
 		assertEquals(Arrays.asList(muestra2, muestra3), this.muestra.muestrasQueEstenAUnaDistanciaMenorA(Arrays.asList(muestra2, muestra3, muestra4), 1000));
 	}
+	
 }
