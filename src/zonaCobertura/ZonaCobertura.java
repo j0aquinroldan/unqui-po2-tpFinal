@@ -46,6 +46,18 @@ public class ZonaCobertura {
 	public boolean seSolapaCon(ZonaCobertura zonaB) {
 		return this.epicentro.distanciaA(zonaB.getEpicentro()) < this.radio + zonaB.getRadio();
 	}
+
+	public void seCreoLaMuestra(Muestra muestra) {
+		this.organizaciones.stream().forEach(organizacion -> organizacion.cargaRealizada(this, muestra));
+	}
+
+	public void seVerificoLaMuestra(Muestra muestra) {
+		this.organizaciones.stream().forEach(organizacion -> organizacion.validacionRealizada(this, muestra));
+	}
+
+	public boolean ALaZonaLeInteresaLaMuestra(Muestra muestra) {
+		return this.getEpicentro().laUbicacionSeEncuentraAMenosDe(muestra.getUbicacion(), this.getRadio());
+	}
 	
 	
 }
