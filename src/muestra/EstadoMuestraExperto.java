@@ -13,7 +13,7 @@ public class EstadoMuestraExperto extends EstadoDeMuestra {
 	@Override
 	public TipoDeOpinion resultadoActual(Muestra muestra) {
 		
-		Stream<Opinion> opiniones = muestra.getOpiniones().stream().filter(opinion -> opinion.isExperto());// filtra las opiniones de la muestra que sean expertos
+		List<Opinion> opiniones = muestra.getOpiniones().stream().filter(opinion -> opinion.isExperto()).toList();// filtra las opiniones de la muestra que sean expertos
 		
 		return tipoConMasCoincidencia(opiniones);
 	}
