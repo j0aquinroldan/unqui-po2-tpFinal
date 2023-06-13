@@ -1,16 +1,36 @@
 package organizacion;
 
 import muestra.Muestra;
+import ubicacion.Ubicacion;
 import zonaCobertura.ZonaCobertura;
 
 public class Organizacion {
 
+	private Ubicacion ubicacion;
+	private TipoUbicacion tipo;
+	private int cantidadEmpleados;
 	private FuncionalidadExterna funcCarga;
 	private FuncionalidadExterna funcValidacion;
 
-	public Organizacion(FuncionalidadExterna funcCarg, FuncionalidadExterna funcValidacion) {
-		this.funcCarga = funcCarg;
+	public Organizacion(Ubicacion ubicacion, TipoUbicacion tipo, int cantidadEmpleados, FuncionalidadExterna funcCarga,
+			FuncionalidadExterna funcValidacion) {
+		this.ubicacion = ubicacion;
+		this.tipo = tipo;
+		this.cantidadEmpleados = cantidadEmpleados;
+		this.funcCarga = funcCarga;
 		this.funcValidacion = funcValidacion;
+	}
+	
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+
+	public TipoUbicacion getTipo() {
+		return tipo;
+	}
+
+	public int getCantidadEmpleados() {
+		return cantidadEmpleados;
 	}
 
 	public void setFuncCarga(FuncionalidadExterna funcCarga) {
