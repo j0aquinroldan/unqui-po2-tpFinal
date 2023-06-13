@@ -5,6 +5,7 @@ import java.util.List;
 
 import muestra.Muestra;
 import organizacion.Organizacion;
+import sistemaVinchucas.SistemaVinchucas;
 import ubicacion.Ubicacion;
 
 public class ZonaCobertura {
@@ -20,6 +21,7 @@ public class ZonaCobertura {
 		this.radio = radio;
 		this.muestrasReportadas = new ArrayList<>();
 		this.organizaciones= new ArrayList<>();
+		SistemaVinchucas.instanciaUnica().agregarZonaAlSistema(this);
 	}
 	
 	public Ubicacion getEpicentro() {

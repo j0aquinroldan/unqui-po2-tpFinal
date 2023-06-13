@@ -1,17 +1,18 @@
-package muestra;
+package sistemaVinchucas;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import muestra.Muestra;
 import zonaCobertura.ZonaCobertura;
 
 public class SistemaVinchucas {
 	private static SistemaVinchucas instanciaUnicaDeSistema;
 	private List<ZonaCobertura> listaDeZonasExistentes;
 	
-	private SistemaVinchucas() {
+	public SistemaVinchucas() {		//Sabemos que el constructor deberia ser privada, pero lo cambiamos a publico para poder testear.
 		this.listaDeZonasExistentes = new ArrayList<ZonaCobertura>();
 	}
 	
@@ -47,4 +48,10 @@ public class SistemaVinchucas {
 	public void removerZonaDelSistema(ZonaCobertura zona) {
 		this.listaDeZonasExistentes.remove(zona);
 	}
+
+	public List<ZonaCobertura> getListaDeZonasExistentes() {
+		return listaDeZonasExistentes;
+	}
+	
+	
 }

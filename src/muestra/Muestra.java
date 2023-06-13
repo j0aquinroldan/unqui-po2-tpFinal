@@ -8,6 +8,7 @@ import java.util.List;
 import opinion.Opinion;
 import opinion.TipoDeOpinion;
 import participantes.Participante;
+import sistemaVinchucas.SistemaVinchucas;
 import ubicacion.Ubicacion;
 
 public class Muestra {
