@@ -12,6 +12,7 @@ import organizacion.FuncionalidadExterna;
 import organizacion.Organizacion;
 import organizacion.TipoOrganizacion;
 import ubicacion.Ubicacion;
+import zonaCobertura.ZonaCobertura;
 
 public class OrganizacionTestCase {
 	
@@ -19,6 +20,7 @@ public class OrganizacionTestCase {
 	private Ubicacion ubi;
 	private FuncionalidadExterna func;
 	private FuncionalidadExterna func2;
+	private ZonaCobertura zona;
 	
 	@BeforeEach
 	public void setup() {
@@ -26,6 +28,7 @@ public class OrganizacionTestCase {
 		func = mock(FuncionalidadExterna.class);
 		func2 = mock(FuncionalidadExterna.class);
 		org = new Organizacion(ubi, TipoOrganizacion.ASISTENCIA, 10, func, func2);
+		zona = mock(ZonaCobertura.class);
 	}
 	
 	@Test
@@ -63,4 +66,15 @@ public class OrganizacionTestCase {
 		verify(func2).nuevoEvento(org,null,null); // ahora le llega el mensaje a func2
 	}
 	
+	@Test
+	public void suscribirseAZonaTest() {
+		org.suscribirseAZona(zona);
+		verify(zona).addOrganizacion(org);
+	}
+	
+	@Test
+	public void desuscribirseDeZonaTest() {
+		org.desuscribirseDeZona(zona);
+		verify(zona).removeOrganizacion(org);
+	}
 }
