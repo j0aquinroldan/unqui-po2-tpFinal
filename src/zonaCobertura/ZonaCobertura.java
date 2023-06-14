@@ -57,7 +57,7 @@ public class ZonaCobertura {
 		this.organizaciones.stream().forEach(organizacion -> organizacion.validacionRealizada(this, muestra));
 	}
 
-	public boolean ALaZonaLeInteresaLaMuestra(Muestra muestra) {
+	public boolean leCorrespondeMuestra(Muestra muestra) {
 		return this.getEpicentro().laUbicacionSeEncuentraAMenosDe(muestra.getUbicacion(), this.getRadio());
 	}
 	

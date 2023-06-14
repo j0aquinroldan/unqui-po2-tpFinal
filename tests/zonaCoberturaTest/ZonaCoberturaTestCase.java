@@ -105,7 +105,7 @@ public class ZonaCoberturaTestCase {
 		Ubicacion ubMuestra = mock(Ubicacion.class);
 		when(muestra.getUbicacion()).thenReturn(ubMuestra);
 		when(this.zona.getEpicentro().laUbicacionSeEncuentraAMenosDe(ubMuestra, this.zona.getRadio())).thenReturn(true);
-		assertTrue(this.zona.ALaZonaLeInteresaLaMuestra(muestra));
+		assertTrue(this.zona.leCorrespondeMuestra(muestra));
 		verify(this.zona.getEpicentro(), times(1)).laUbicacionSeEncuentraAMenosDe(ubMuestra, this.zona.getRadio());
 	}
 	
@@ -115,7 +115,7 @@ public class ZonaCoberturaTestCase {
 		Ubicacion ubMuestra = mock(Ubicacion.class);
 		when(muestra.getUbicacion()).thenReturn(ubMuestra);
 		when(this.zona.getEpicentro().laUbicacionSeEncuentraAMenosDe(ubMuestra, this.zona.getRadio())).thenReturn(false);
-		assertFalse(this.zona.ALaZonaLeInteresaLaMuestra(muestra));
+		assertFalse(this.zona.leCorrespondeMuestra(muestra));
 		verify(this.zona.getEpicentro(), times(1)).laUbicacionSeEncuentraAMenosDe(ubMuestra, this.zona.getRadio());
 	}
 

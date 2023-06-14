@@ -50,11 +50,11 @@ public class SistemaVinchucasTestCase {
 	public void testNotificarASusZonasDeCreacionDeMuestra() {
 		this.sistema.agregarZonaAlSistema(zona1);
 		this.sistema.agregarZonaAlSistema(zona2);
-		when(this.zona1.ALaZonaLeInteresaLaMuestra(muestra)).thenReturn(true);
-		when(this.zona2.ALaZonaLeInteresaLaMuestra(muestra)).thenReturn(false);
+		when(this.zona1.leCorrespondeMuestra(muestra)).thenReturn(true);
+		when(this.zona2.leCorrespondeMuestra(muestra)).thenReturn(false);
 		this.sistema.muestraCreada(this.muestra);
-		verify(this.zona1, times(1)).ALaZonaLeInteresaLaMuestra(muestra);
-		verify(this.zona2, times(1)).ALaZonaLeInteresaLaMuestra(muestra);
+		verify(this.zona1, times(1)).leCorrespondeMuestra(muestra);
+		verify(this.zona2, times(1)).leCorrespondeMuestra(muestra);
 		verify(this.zona1, times(1)).seCreoLaMuestra(muestra);
 		verify(this.zona2, times(0)).seCreoLaMuestra(muestra);
 	}
@@ -63,11 +63,11 @@ public class SistemaVinchucasTestCase {
 	public void testNotificarASusZonasDeVerificacionDeMuestra() {
 		this.sistema.agregarZonaAlSistema(zona1);
 		this.sistema.agregarZonaAlSistema(zona2);
-		when(this.zona1.ALaZonaLeInteresaLaMuestra(muestra)).thenReturn(true);
-		when(this.zona2.ALaZonaLeInteresaLaMuestra(muestra)).thenReturn(false);
+		when(this.zona1.leCorrespondeMuestra(muestra)).thenReturn(true);
+		when(this.zona2.leCorrespondeMuestra(muestra)).thenReturn(false);
 		this.sistema.muestraVerificada(this.muestra);
-		verify(this.zona1, times(1)).ALaZonaLeInteresaLaMuestra(muestra);
-		verify(this.zona2, times(1)).ALaZonaLeInteresaLaMuestra(muestra);
+		verify(this.zona1, times(1)).leCorrespondeMuestra(muestra);
+		verify(this.zona2, times(1)).leCorrespondeMuestra(muestra);
 		verify(this.zona1, times(1)).seVerificoLaMuestra(muestra);
 		verify(this.zona2, times(0)).seVerificoLaMuestra(muestra);
 	}
