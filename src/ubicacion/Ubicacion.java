@@ -8,18 +8,16 @@ public class Ubicacion {
 	private double longitud;
 
 	public Ubicacion(Double latitud, Double longitud) {
-		super();
 		this.latitud = latitud;
 		this.longitud = longitud;
 	}
 
 	public double distanciaA(Ubicacion ubicacion) {
 		double radioDeLaTierraEnKilometros = 6371;
-		double deltaLatitud = this.convertirARadianes(this.latitud) - this.convertirARadianes(ubicacion.getLatitud());
-		double deltaLongitud = this.convertirARadianes(this.longitud)
-				- this.convertirARadianes(ubicacion.getLongitud());
-		double a = Math.pow(Math.sin(deltaLatitud / 2), 2) + Math.cos(this.convertirARadianes(this.getLatitud()))
-				* Math.cos(this.convertirARadianes(ubicacion.getLatitud())) * Math.pow(Math.sin(deltaLongitud / 2), 2);
+		double deltaLatitud = Math.toRadians(this.latitud - ubicacion.getLatitud());
+		double deltaLongitud = Math.toRadians(this.longitud - ubicacion.getLongitud());
+		double a = Math.pow(Math.sin(deltaLatitud / 2), 2) + Math.cos(Math.toRadians(this.getLatitud()))
+				* Math.cos(Math.toRadians(ubicacion.getLatitud())) * Math.pow(Math.sin(deltaLongitud / 2), 2);
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		double distance = radioDeLaTierraEnKilometros * c;
 		return distance;
@@ -34,9 +32,7 @@ public class Ubicacion {
 		return this.distanciaA(ubicacion) < kilometros;
 	}
 
-	public double convertirARadianes(double numero) {
-		return Math.toRadians(numero);
-	}
+	
 
 	public double getLatitud() {
 		return latitud;

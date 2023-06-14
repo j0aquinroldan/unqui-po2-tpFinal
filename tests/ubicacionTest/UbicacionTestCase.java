@@ -73,11 +73,6 @@ public class UbicacionTestCase {
 	}
 	
 	@Test
-	public void testPasarARadianes() {
-		assertEquals(0.5235987755982988, this.ubicacion1.convertirARadianes(30));
-	}
-	
-	@Test
 	public void setLatitudTest() {
 		ubicacion1.setLatitud(10);
 		assertEquals(10, ubicacion1.getLatitud());
