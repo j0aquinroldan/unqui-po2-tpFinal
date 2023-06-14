@@ -14,7 +14,7 @@ public class Opinion {
 	public Opinion(TipoDeOpinion tipoDeOpinion, Participante autor, LocalDate fechaDeCreacion) {
 		this.tipoDeOpinion = tipoDeOpinion;
 		this.autor = autor;
-		this.nivel = autor.getNivel(); // REVISAR
+		this.nivel = autor.getNivel(); 
 		this.fechaDeCreacion = fechaDeCreacion;
 	}
 

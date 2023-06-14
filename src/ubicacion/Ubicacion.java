@@ -32,8 +32,6 @@ public class Ubicacion {
 		return this.distanciaA(ubicacion) < kilometros;
 	}
 
-	
-
 	public double getLatitud() {
 		return latitud;
 	}

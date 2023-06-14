@@ -31,6 +31,10 @@ public class ZonaCobertura {
 	public int getRadio() {
 		return radio;
 	}
+	
+	public List<Muestra> getMuestrasReportadas() {
+		return muestrasReportadas;
+	}
 
 	public List<Organizacion> getOrganizaciones() {
 		return organizaciones;
@@ -43,12 +47,18 @@ public class ZonaCobertura {
 	public void removeOrganizacion(Organizacion org) {
 		this.organizaciones.remove(org);
 	}
+	
+	public List<ZonaCobertura> zonasQueSeSolapan() {
+		List<ZonaCobertura> zonasExistentes = SistemaVinchucas.instanciaUnica().getListaDeZonasExistentes();
+		return zonasExistentes.stream().filter(zona->zona.seSolapaCon(this)).toList();
+	}
 
 	public boolean seSolapaCon(ZonaCobertura zonaB) {
 		return this.epicentro.distanciaA(zonaB.getEpicentro()) < this.radio + zonaB.getRadio();
 	}
 
 	public void seCreoLaMuestra(Muestra muestra) {
+		this.muestrasReportadas.add(muestra);
 		this.organizaciones.stream().forEach(organizacion -> organizacion.cargaRealizada(this, muestra));
 	}
 

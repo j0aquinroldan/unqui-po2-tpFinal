@@ -28,13 +28,13 @@ public abstract class EstadoDeMuestra {
 
 	        // Encuentra la opinion con mas apariciones
 	        for (Map.Entry<TipoDeOpinion, Integer> entry : apariciones.entrySet()) {
-	            int currentRecuento = entry.getValue();
+	            int recuentoActual = entry.getValue();
 
-	            if (currentRecuento > maxApariciones) {
-	                maxApariciones = currentRecuento;
+	            if (recuentoActual > maxApariciones) {
+	                maxApariciones = recuentoActual;
 	                tipoConMasApariciones = entry.getKey();
 	                huboEmpate = false;
-	            } else if (currentRecuento == maxApariciones) {
+	            } else if (recuentoActual == maxApariciones) {
 	                huboEmpate = true;
 	            }
 	        }

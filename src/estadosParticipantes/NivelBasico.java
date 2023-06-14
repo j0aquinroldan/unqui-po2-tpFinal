@@ -21,7 +21,6 @@ public class NivelBasico extends Nivel {
 		//SI NO SE CUMPLE LA CONDICION PARA CONTINUAR, EL NIVEL CAMBIA
 		if(!this.puedeMantenerSuNivel(participante)) {
 			participante.setNivel(new NivelExperto());
-//			participante.sum(0);
 		}
 	} 
 
