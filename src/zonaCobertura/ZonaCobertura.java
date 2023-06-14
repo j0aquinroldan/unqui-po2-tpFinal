@@ -9,9 +9,9 @@ import sistemaVinchucas.SistemaVinchucas;
 import ubicacion.Ubicacion;
 
 public class ZonaCobertura {
-	private String nombre; 
+	private String nombre;
 	private Ubicacion epicentro;
-	private  int radio;
+	private int radio;
 	private List<Muestra> muestrasReportadas;
 	private List<Organizacion> organizaciones;
 
@@ -20,31 +20,30 @@ public class ZonaCobertura {
 		this.epicentro = epicentro;
 		this.radio = radio;
 		this.muestrasReportadas = new ArrayList<>();
-		this.organizaciones= new ArrayList<>();
+		this.organizaciones = new ArrayList<>();
 		SistemaVinchucas.instanciaUnica().agregarZonaAlSistema(this);
 	}
-	
+
 	public Ubicacion getEpicentro() {
 		return epicentro;
 	}
-	
+
 	public int getRadio() {
 		return radio;
 	}
-	
+
 	public List<Organizacion> getOrganizaciones() {
 		return organizaciones;
 	}
-	
+
 	public void addOrganizacion(Organizacion org) {
 		this.organizaciones.add(org);
 	}
-	
+
 	public void removeOrganizacion(Organizacion org) {
 		this.organizaciones.remove(org);
 	}
-	
-	
+
 	public boolean seSolapaCon(ZonaCobertura zonaB) {
 		return this.epicentro.distanciaA(zonaB.getEpicentro()) < this.radio + zonaB.getRadio();
 	}
@@ -60,6 +59,5 @@ public class ZonaCobertura {
 	public boolean leCorrespondeMuestra(Muestra muestra) {
 		return this.getEpicentro().laUbicacionSeEncuentraAMenosDe(muestra.getUbicacion(), this.getRadio());
 	}
-	
-	
+
 }

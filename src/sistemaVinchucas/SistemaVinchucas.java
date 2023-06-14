@@ -21,7 +21,7 @@ public class SistemaVinchucas {
 	            instanciaUnicaDeSistema = new SistemaVinchucas();
 	        }
 	        return instanciaUnicaDeSistema;
-	    } //Testear cuando ya hay una instancia o no
+	    } 
 
 	public void muestraCreada(Muestra muestra) {
 		this.notificarNuevaMuestraAZonasSiCorresponde(muestra);

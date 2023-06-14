@@ -10,7 +10,6 @@ import participantes.Participante;
 public abstract class Nivel {
 	
 	public void opinar(Participante p, Muestra m, TipoDeOpinion tipoDeOpinion, LocalDate fechaDeCreacion) {
-		//TEMPLATE METHOD
 		
 		if(!m.fueOpinadaPor(p) && this.puedeOpinar(m) && !m.isVerificada()) {
 			
@@ -27,8 +26,8 @@ public abstract class Nivel {
 	protected abstract void actualizarNivel(Participante p);
 
 	public void recolectar(Participante participante, Muestra muestra) {
-		participante.agregarMuestra(muestra); // test size muestras
-		this.actualizarNivel(participante); // asset niuvel esperado
+		participante.agregarMuestra(muestra); 
+		this.actualizarNivel(participante); 
 	}
 	
 	public abstract boolean puedeMantenerSuNivel(Participante participante);

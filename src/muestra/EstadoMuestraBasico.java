@@ -28,7 +28,6 @@ public class EstadoMuestraBasico extends EstadoDeMuestra {
 
 	@Override
 	public boolean isExperto() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	

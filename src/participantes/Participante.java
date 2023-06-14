@@ -61,7 +61,6 @@ public class Participante {
 
 	public void opinar(Muestra m, TipoDeOpinion tipo, LocalDate fechaDeCreacion) {
 		this.nivel.opinar(this, m, tipo, fechaDeCreacion);
-		// nivel tiene que agregar opinion a la list de revisiones
 	}
 
 	public Nivel getNivel() {

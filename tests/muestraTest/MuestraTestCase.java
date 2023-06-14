@@ -31,7 +31,7 @@ public class MuestraTestCase {
 	
 	@BeforeEach
 	public void setup() {
-		p = new Participante(); // es un DOC, por tanto podria ser un mock pero no funciona
+		p = new Participante(); 
 		u = mock(Ubicacion.class);
 		p.setUbicacion(u);
 		muestra = new Muestra(p);
@@ -42,8 +42,6 @@ public class MuestraTestCase {
 	 */
 	@Test
 	public void testConstructor() {
-		
-		//when(p.getUbicacion()).thenReturn(u);
 		
 		assertEquals(p, muestra.getAutor());
 		assertEquals(u, muestra.getUbicacion());

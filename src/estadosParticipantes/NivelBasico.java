@@ -28,8 +28,6 @@ public class NivelBasico extends Nivel {
 	@Override
 	public boolean puedeMantenerSuNivel(Participante participante) {
 		return (participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())) < 20 && (participante.cantEnviosDeLosUltimos30Dias(LocalDate.now()) < 10);
-		//EL PARTICIPANTE DEVUELVE LAS REVISIONES Y ENVIOS DE LOS ULTIMOS 30 DIAS CON UN MENSAJE
-		
 	}
 
 	@Override
