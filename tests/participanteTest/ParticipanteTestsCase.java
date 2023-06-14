@@ -24,11 +24,11 @@ import ubicacion.Ubicacion;
 
 public class ParticipanteTestsCase {
 
-	Participante participante;
-	Ubicacion ubicacion;
-	NivelBasico nb;
-	Opinion opinion;
-	Muestra muestra;
+	private Participante participante;
+	private Ubicacion ubicacion;
+	private NivelBasico nb;
+	private Opinion opinion;
+	private Muestra muestra;
 
 	@BeforeEach
 	public void setup() {
