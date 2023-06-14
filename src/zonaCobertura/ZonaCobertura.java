@@ -5,6 +5,7 @@ import java.util.List;
 
 import muestra.Muestra;
 import organizacion.Organizacion;
+import sistemaVinchucas.SistemaVinchucas;
 import ubicacion.Ubicacion;
 
 public class ZonaCobertura {
@@ -20,6 +21,7 @@ public class ZonaCobertura {
 		this.radio = radio;
 		this.muestrasReportadas = new ArrayList<>();
 		this.organizaciones= new ArrayList<>();
+		SistemaVinchucas.instanciaUnica().agregarZonaAlSistema(this);
 	}
 	
 	public Ubicacion getEpicentro() {
@@ -45,6 +47,18 @@ public class ZonaCobertura {
 	
 	public boolean seSolapaCon(ZonaCobertura zonaB) {
 		return this.epicentro.distanciaA(zonaB.getEpicentro()) < this.radio + zonaB.getRadio();
+	}
+
+	public void seCreoLaMuestra(Muestra muestra) {
+		this.organizaciones.stream().forEach(organizacion -> organizacion.cargaRealizada(this, muestra));
+	}
+
+	public void seVerificoLaMuestra(Muestra muestra) {
+		this.organizaciones.stream().forEach(organizacion -> organizacion.validacionRealizada(this, muestra));
+	}
+
+	public boolean ALaZonaLeInteresaLaMuestra(Muestra muestra) {
+		return this.getEpicentro().laUbicacionSeEncuentraAMenosDe(muestra.getUbicacion(), this.getRadio());
 	}
 	
 	

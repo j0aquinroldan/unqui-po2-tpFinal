@@ -13,7 +13,7 @@ public class EstadoMuestraBasico extends EstadoDeMuestra {
 	@Override
 	public TipoDeOpinion resultadoActual(Muestra muestra) {
 		
-		Stream<Opinion> opiniones = muestra.getOpiniones().stream(); // toma todas las opiniones de la muestra (solo hay basicos)
+		List<Opinion> opiniones = muestra.getOpiniones(); // toma todas las opiniones de la muestra (solo hay basicos)
 		
 		return tipoConMasCoincidencia(opiniones);
 	}

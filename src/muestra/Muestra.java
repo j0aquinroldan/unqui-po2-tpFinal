@@ -8,6 +8,7 @@ import java.util.List;
 import opinion.Opinion;
 import opinion.TipoDeOpinion;
 import participantes.Participante;
+import sistemaVinchucas.SistemaVinchucas;
 import ubicacion.Ubicacion;
 
 public class Muestra {
@@ -27,7 +28,7 @@ public class Muestra {
 		this.setUbicacion(autor.getUbicacion());
 		this.fecha = fecha;
 		this.estado = new EstadoMuestraBasico();
-		// agregar funcinones del observer
+		SistemaVinchucas.instanciaUnica().muestraCreada(this); 
 	}
 	
 	public  Muestra(Participante autor) {
@@ -37,7 +38,6 @@ public class Muestra {
 		this.setUbicacion(autor.getUbicacion());
 		this.fecha = LocalDate.now();
 		this.estado = new EstadoMuestraBasico();
-		// agregar funcinones del observer
 	}
 	
 ////GETS Y SETS
@@ -72,6 +72,7 @@ public class Muestra {
 
 	public void setVerificada() {
 		this.verificada = true;
+		SistemaVinchucas.instanciaUnica().muestraVerificada(this);
 	}
 
 	public void setEstado(EstadoDeMuestra estado) {

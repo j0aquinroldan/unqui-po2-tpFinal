@@ -1,6 +1,7 @@
 package muestraTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -8,6 +9,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -68,7 +70,18 @@ public class EstadoMuestraBasicoTestCase {
 		when(this.op3.getTipoDeOpinion()).thenReturn(TipoDeOpinion.IMAGEN_POCO_CLARA);
 		when(this.op4.getTipoDeOpinion()).thenReturn(TipoDeOpinion.VINCHUCA_GUASAYANA);
 		when(this.op5.getTipoDeOpinion()).thenReturn(TipoDeOpinion.IMAGEN_POCO_CLARA);
-		Stream <Opinion> streamDeOpiniones = Arrays.asList(op1,op2,op3,op4,op5).stream();
-		assertEquals(TipoDeOpinion.VINCHUCA_GUASAYANA, this.estadoBasico.tipoConMasCoincidencia(streamDeOpiniones)); //En caso de empate, devuelve el primer par que se repita
+		List<Opinion> streamDeOpiniones = Arrays.asList(op1,op2,op3,op4,op5);
+		assertEquals(TipoDeOpinion.VINCHUCA_GUASAYANA, this.estadoBasico.tipoConMasCoincidencia(streamDeOpiniones));
+	}
+	
+	@Test
+	public void testTipoDeOpinionConMasCoincidenciasDaEmpate() {
+		when(this.op1.getTipoDeOpinion()).thenReturn(TipoDeOpinion.VINCHUCA_GUASAYANA);
+		when(this.op2.getTipoDeOpinion()).thenReturn(TipoDeOpinion.NINGUNA);
+		when(this.op3.getTipoDeOpinion()).thenReturn(TipoDeOpinion.IMAGEN_POCO_CLARA);
+		when(this.op4.getTipoDeOpinion()).thenReturn(TipoDeOpinion.VINCHUCA_GUASAYANA);
+		when(this.op5.getTipoDeOpinion()).thenReturn(TipoDeOpinion.IMAGEN_POCO_CLARA);
+		List<Opinion> streamDeOpiniones = Arrays.asList(op1,op2,op3,op4,op5);
+		assertNull(this.estadoBasico.tipoConMasCoincidencia(streamDeOpiniones)); //En caso de empate, devuelve null
 	}
 }

@@ -28,5 +28,13 @@ public class Organizacion {
 	public void validacionRealizada(ZonaCobertura zona, Muestra muestra) {
 		this.funcValidacion.nuevoEvento(this, zona, muestra);
 	}
+	
+	public void suscribirseAZona(ZonaCobertura zona) {
+		zona.addOrganizacion(this);
+	}
+	
+	public void desuscribirseDeZona(ZonaCobertura zona) {
+		zona.removeOrganizacion(this);
+	}
 
 }

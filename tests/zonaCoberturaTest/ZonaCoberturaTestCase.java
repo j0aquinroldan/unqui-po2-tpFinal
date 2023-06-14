@@ -4,11 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import muestra.Muestra;
 import organizacion.Organizacion;
 import ubicacion.Ubicacion;
 import zonaCobertura.ZonaCobertura;
@@ -20,6 +23,7 @@ public class ZonaCoberturaTestCase {
 	private Ubicacion centro;
 	private Ubicacion centro2;
 	private Organizacion org;
+	private Organizacion org2;
 	
 	@BeforeEach
 	void setup() {
@@ -27,6 +31,7 @@ public class ZonaCoberturaTestCase {
 		zona = new ZonaCobertura("zona1", centro, 20);
 		zona2 = new ZonaCobertura("zona2", centro2, 10);
 		org = mock(Organizacion.class);
+		org2 = mock(Organizacion.class);
 	}
 	
 	@Test
@@ -72,6 +77,46 @@ public class ZonaCoberturaTestCase {
 		
 		when(centro.distanciaA(centro2)).thenReturn(50d);
 		assertFalse(zona.seSolapaCon(zona2));
+	}
+	
+	@Test
+	public void testNotificaCreacionDeMuestra() {
+		Muestra muestra = mock(Muestra.class);
+		this.zona.addOrganizacion(org);
+		this.zona.addOrganizacion(org2);
+		this.zona.seCreoLaMuestra(muestra);
+		verify(this.org, times(1)).cargaRealizada(zona, muestra);
+		verify(this.org2, times(1)).cargaRealizada(zona, muestra);
+	}
+	
+	@Test
+	public void testNotificaVerificacionDeMuestra() {
+		Muestra muestra = mock(Muestra.class);
+		this.zona.addOrganizacion(org);
+		this.zona.addOrganizacion(org2);
+		this.zona.seVerificoLaMuestra(muestra);
+		verify(this.org, times(1)).validacionRealizada(zona, muestra);
+		verify(this.org2, times(1)).validacionRealizada(zona, muestra);
+	}
+	
+	@Test
+	public void testALaZonaLeInteresaLaMuestra() {
+		Muestra muestra = mock(Muestra.class);
+		Ubicacion ubMuestra = mock(Ubicacion.class);
+		when(muestra.getUbicacion()).thenReturn(ubMuestra);
+		when(this.zona.getEpicentro().laUbicacionSeEncuentraAMenosDe(ubMuestra, this.zona.getRadio())).thenReturn(true);
+		assertTrue(this.zona.ALaZonaLeInteresaLaMuestra(muestra));
+		verify(this.zona.getEpicentro(), times(1)).laUbicacionSeEncuentraAMenosDe(ubMuestra, this.zona.getRadio());
+	}
+	
+	@Test
+	public void testALaZonaNoLeInteresaLaMuestra() {
+		Muestra muestra = mock(Muestra.class);
+		Ubicacion ubMuestra = mock(Ubicacion.class);
+		when(muestra.getUbicacion()).thenReturn(ubMuestra);
+		when(this.zona.getEpicentro().laUbicacionSeEncuentraAMenosDe(ubMuestra, this.zona.getRadio())).thenReturn(false);
+		assertFalse(this.zona.ALaZonaLeInteresaLaMuestra(muestra));
+		verify(this.zona.getEpicentro(), times(1)).laUbicacionSeEncuentraAMenosDe(ubMuestra, this.zona.getRadio());
 	}
 
 }
