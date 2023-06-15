@@ -124,5 +124,11 @@ public class MuestraTestCase {
 		assertEquals(Arrays.asList(muestra2, muestra3), this.muestra.muestrasQueEstenAUnaDistanciaMenorA(Arrays.asList(muestra2, muestra3, muestra4), 1000));
 	}
 	
+	@Test
+	public void setVerificadaTest() {
+		muestra.setVerificada();
+		assertTrue(muestra.isVerificada());
+	}
+	
 	
 }
