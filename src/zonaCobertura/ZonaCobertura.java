@@ -2,6 +2,9 @@ package zonaCobertura;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.BooleanSupplier;
+import java.util.stream.Stream;
 
 import muestra.Muestra;
 import organizacion.Organizacion;
@@ -24,6 +27,10 @@ public class ZonaCobertura {
 		SistemaVinchucas.instanciaUnica().agregarZonaAlSistema(this);
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
 	public Ubicacion getEpicentro() {
 		return epicentro;
 	}
@@ -31,7 +38,7 @@ public class ZonaCobertura {
 	public int getRadio() {
 		return radio;
 	}
-	
+
 	public List<Muestra> getMuestrasReportadas() {
 		return muestrasReportadas;
 	}
@@ -47,10 +54,11 @@ public class ZonaCobertura {
 	public void removeOrganizacion(Organizacion org) {
 		this.organizaciones.remove(org);
 	}
-	
+
 	public List<ZonaCobertura> zonasQueSeSolapan() {
-		List<ZonaCobertura> zonasExistentes = SistemaVinchucas.instanciaUnica().getListaDeZonasExistentes();
-		return zonasExistentes.stream().filter(zona->zona.seSolapaCon(this)).toList();
+		Stream<ZonaCobertura> zonasExistentes = SistemaVinchucas.instanciaUnica().getListaDeZonasExistentes().stream()
+				.filter(zona -> !this.equals(zona));
+		return zonasExistentes.filter(zona -> zona.seSolapaCon(this)).toList();
 	}
 
 	public boolean seSolapaCon(ZonaCobertura zonaB) {
@@ -69,5 +77,22 @@ public class ZonaCobertura {
 	public boolean leCorrespondeMuestra(Muestra muestra) {
 		return this.getEpicentro().laUbicacionSeEncuentraAMenosDe(muestra.getUbicacion(), this.getRadio());
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ZonaCobertura other = (ZonaCobertura) obj;
+		return Objects.equals(epicentro, other.epicentro) && Objects.equals(nombre, other.nombre)
+				&& radio == other.radio;
+	}
+	
+	
+	
+	
 
 }

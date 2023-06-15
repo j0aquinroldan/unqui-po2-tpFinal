@@ -8,11 +8,15 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import muestra.Muestra;
 import organizacion.Organizacion;
+import sistemaVinchucas.SistemaVinchucas;
 import ubicacion.Ubicacion;
 import zonaCobertura.ZonaCobertura;
 
@@ -27,7 +31,9 @@ public class ZonaCoberturaTestCase {
 	
 	@BeforeEach
 	void setup() {
+//		SistemaVinchucas.instanciaUnica().reset();
 		centro = mock(Ubicacion.class);
+		centro2 = mock(Ubicacion.class);
 		zona = new ZonaCobertura("zona1", centro, 20);
 		zona2 = new ZonaCobertura("zona2", centro2, 10);
 		org = mock(Organizacion.class);
@@ -42,6 +48,11 @@ public class ZonaCoberturaTestCase {
 	@Test
 	public void getRadioTest() {
 		assertEquals(20, zona.getRadio());
+	}
+	
+	@Test
+	public void getNombreTest() {
+		assertEquals("zona1", zona.getNombre());
 	}
 	
 	@Test
@@ -80,6 +91,13 @@ public class ZonaCoberturaTestCase {
 	}
 	
 	@Test
+	public void zonasQueSeSolapanTest() {
+		
+		when(centro2.distanciaA(centro)).thenReturn(5d);
+		assertEquals(Arrays.asList(zona2),zona.zonasQueSeSolapan());
+	}
+	
+	@Test
 	public void testNotificaCreacionDeMuestra() {
 		Muestra muestra = mock(Muestra.class);
 		this.zona.addOrganizacion(org);
@@ -100,7 +118,7 @@ public class ZonaCoberturaTestCase {
 	}
 	
 	@Test
-	public void testALaZonaLeInteresaLaMuestra() {
+	public void leCorrespondeMuestraTest() {
 		Muestra muestra = mock(Muestra.class);
 		Ubicacion ubMuestra = mock(Ubicacion.class);
 		when(muestra.getUbicacion()).thenReturn(ubMuestra);
@@ -110,7 +128,7 @@ public class ZonaCoberturaTestCase {
 	}
 	
 	@Test
-	public void testALaZonaNoLeInteresaLaMuestra() {
+	public void NOLeCorrespondeMuestraTest() {
 		Muestra muestra = mock(Muestra.class);
 		Ubicacion ubMuestra = mock(Ubicacion.class);
 		when(muestra.getUbicacion()).thenReturn(ubMuestra);
@@ -118,5 +136,23 @@ public class ZonaCoberturaTestCase {
 		assertFalse(this.zona.leCorrespondeMuestra(muestra));
 		verify(this.zona.getEpicentro(), times(1)).laUbicacionSeEncuentraAMenosDe(ubMuestra, this.zona.getRadio());
 	}
+	
+	@Test
+	public void getMuestrasReportadasTest() {
+		Muestra muestra = mock(Muestra.class);
+		zona.seCreoLaMuestra(muestra);
+		assertEquals(Arrays.asList(muestra),zona.getMuestrasReportadas());
+	}
+	
+	@Test
+	public void equalsTest() {
+		ZonaCobertura zona3 = new ZonaCobertura("zona1", centro, 20);
+		assertTrue(zona.equals(zona3));
+	}
 
+	
+	@AfterEach
+	public void teardown() {
+		SistemaVinchucas.instanciaUnica().reset();
+	}
 }
