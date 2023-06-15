@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -70,5 +72,20 @@ public class SistemaVinchucasTestCase {
 		verify(this.zona2, times(1)).leCorrespondeMuestra(muestra);
 		verify(this.zona1, times(1)).seVerificoLaMuestra(muestra);
 		verify(this.zona2, times(0)).seVerificoLaMuestra(muestra);
+	}
+	
+	@Test
+	public void testNoSeAgreganZonasIguales() {
+		SistemaVinchucas.instanciaUnica().agregarZonaAlSistema(zona1);
+		SistemaVinchucas.instanciaUnica().agregarZonaAlSistema(zona1);
+		SistemaVinchucas.instanciaUnica().agregarZonaAlSistema(zona2);
+		
+		assertEquals(2, SistemaVinchucas.instanciaUnica().getListaDeZonasExistentes().size());
+		
+	}
+	
+	@AfterEach
+	public void teardown() {
+		SistemaVinchucas.instanciaUnica().reset();
 	}
 }

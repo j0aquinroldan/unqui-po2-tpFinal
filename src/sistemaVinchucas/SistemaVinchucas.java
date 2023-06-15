@@ -1,7 +1,7 @@
 package sistemaVinchucas;
 
-
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -11,25 +11,29 @@ import zonaCobertura.ZonaCobertura;
 public class SistemaVinchucas {
 	private static SistemaVinchucas instanciaUnicaDeSistema;
 	private List<ZonaCobertura> listaDeZonasExistentes;
-	
-	public SistemaVinchucas() {		//Sabemos que el constructor deberia ser privada, pero lo cambiamos a publico para poder testear.
+
+	public SistemaVinchucas() { // Sabemos que el constructor deberia ser privada, pero lo cambiamos a publico
+								// para poder testear.
 		this.listaDeZonasExistentes = new ArrayList<ZonaCobertura>();
 	}
-	
-	 public static SistemaVinchucas instanciaUnica() {
-	        if (instanciaUnicaDeSistema == null) {
-	            instanciaUnicaDeSistema = new SistemaVinchucas();
-	        }
-	        return instanciaUnicaDeSistema;
-	    } 
+
+	public static SistemaVinchucas instanciaUnica() {
+		if (instanciaUnicaDeSistema == null) {
+			instanciaUnicaDeSistema = new SistemaVinchucas();
+		}
+		return instanciaUnicaDeSistema;
+	}
 
 	public void muestraCreada(Muestra muestra) {
 		this.notificarNuevaMuestraAZonasSiCorresponde(muestra);
 	}
 
 	private void notificarNuevaMuestraAZonasSiCorresponde(Muestra muestra) {
-		Stream<ZonaCobertura> streamConZonas = this.listaDeZonasExistentes.stream().filter(zona -> zona.leCorrespondeMuestra(muestra)); // Primero se obtienen las zonas a las que les interesa la nueva muestra.
-		streamConZonas.forEach(zonaInteresada -> zonaInteresada.seCreoLaMuestra(muestra));															// A las que les interesa se les notifica.
+		Stream<ZonaCobertura> streamConZonas = this.listaDeZonasExistentes.stream()
+				.filter(zona -> zona.leCorrespondeMuestra(muestra)); // Primero se obtienen las zonas a las que les
+																		// interesa la nueva muestra.
+		streamConZonas.forEach(zonaInteresada -> zonaInteresada.seCreoLaMuestra(muestra)); // A las que les interesa se
+																							// les notifica.
 	}
 
 	public void muestraVerificada(Muestra muestra) {
@@ -37,14 +41,21 @@ public class SistemaVinchucas {
 	}
 
 	private void notificarMuestraVerificadaAZonasSiCorresponde(Muestra muestra) {
-		Stream<ZonaCobertura> streamConZonas = this.listaDeZonasExistentes.stream().filter(zona -> zona.leCorrespondeMuestra(muestra)); // Primero se obtienen las zonas a las que les interesa la nueva muestra.
-		streamConZonas.forEach(zonaInteresada -> zonaInteresada.seVerificoLaMuestra(muestra));															// A las que les interesa se les notifica.
+		Stream<ZonaCobertura> streamConZonas = this.listaDeZonasExistentes.stream()
+				.filter(zona -> zona.leCorrespondeMuestra(muestra)); // Primero se obtienen las zonas a las que les
+																		// interesa la nueva muestra.
+		streamConZonas.forEach(zonaInteresada -> zonaInteresada.seVerificoLaMuestra(muestra)); // A las que les interesa
+																								// se les notifica.
 	}
-	
+
 	public void agregarZonaAlSistema(ZonaCobertura zona) {
-		this.listaDeZonasExistentes.add(zona);
+		
+		if(this.listaDeZonasExistentes.stream().allMatch(zonaSistema->!zonaSistema.equals(zona))){
+			this.listaDeZonasExistentes.add(zona);
+		}
+
 	}
-	
+
 	public void removerZonaDelSistema(ZonaCobertura zona) {
 		this.listaDeZonasExistentes.remove(zona);
 	}
@@ -53,5 +64,8 @@ public class SistemaVinchucas {
 		return listaDeZonasExistentes;
 	}
 	
-	
+	public void reset() {
+		this.listaDeZonasExistentes.clear();
+	}
+
 }
