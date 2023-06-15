@@ -14,11 +14,10 @@ public abstract class Nivel {
 		if(!m.fueOpinadaPor(p) && this.puedeOpinar(m) && !m.isVerificada()) {
 			
 			Opinion o = new Opinion(tipoDeOpinion,p, fechaDeCreacion);
-			//STATE DE MUESTRA SE ENCARGA DE AGREGAR LA OPINION, 3 ESTADOS DIFERENTES DE LA MUESTRA
-			p.agregarOpinion(o); // test size opiniones
-			m.agregarOpinion(o); // verify mensaje enviado
+			p.agregarOpinion(o); 
+			m.agregarOpinion(o); 
 			
-			this.actualizarNivel(p); // asset niuvel esperado
+			this.actualizarNivel(p); 
 		}
 	}
 
