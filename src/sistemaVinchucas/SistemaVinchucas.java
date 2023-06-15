@@ -11,10 +11,12 @@ import zonaCobertura.ZonaCobertura;
 public class SistemaVinchucas {
 	private static SistemaVinchucas instanciaUnicaDeSistema;
 	private List<ZonaCobertura> listaDeZonasExistentes;
+	private List<Muestra> muestrasReportadas;
 
 	public SistemaVinchucas() { // Sabemos que el constructor deberia ser privada, pero lo cambiamos a publico
 								// para poder testear.
 		this.listaDeZonasExistentes = new ArrayList<ZonaCobertura>();
+		this.muestrasReportadas = new ArrayList<>();
 	}
 
 	public static SistemaVinchucas instanciaUnica() {
@@ -26,14 +28,11 @@ public class SistemaVinchucas {
 
 	public void muestraCreada(Muestra muestra) {
 		this.notificarNuevaMuestraAZonasSiCorresponde(muestra);
+		this.muestrasReportadas.add(muestra);
 	}
 
 	private void notificarNuevaMuestraAZonasSiCorresponde(Muestra muestra) {
-		Stream<ZonaCobertura> streamConZonas = this.listaDeZonasExistentes.stream()
-				.filter(zona -> zona.leCorrespondeMuestra(muestra)); // Primero se obtienen las zonas a las que les
-																		// interesa la nueva muestra.
-		streamConZonas.forEach(zonaInteresada -> zonaInteresada.seCreoLaMuestra(muestra)); // A las que les interesa se
-																							// les notifica.
+	this.listaDeZonasExistentes.stream().forEach(zonaInteresada -> zonaInteresada.seCreoLaMuestra(muestra)); 
 	}
 
 	public void muestraVerificada(Muestra muestra) {
@@ -41,11 +40,7 @@ public class SistemaVinchucas {
 	}
 
 	private void notificarMuestraVerificadaAZonasSiCorresponde(Muestra muestra) {
-		Stream<ZonaCobertura> streamConZonas = this.listaDeZonasExistentes.stream()
-				.filter(zona -> zona.leCorrespondeMuestra(muestra)); // Primero se obtienen las zonas a las que les
-																		// interesa la nueva muestra.
-		streamConZonas.forEach(zonaInteresada -> zonaInteresada.seVerificoLaMuestra(muestra)); // A las que les interesa
-																								// se les notifica.
+		this.listaDeZonasExistentes.stream().forEach(zonaInteresada -> zonaInteresada.seVerificoLaMuestra(muestra));
 	}
 
 	public void agregarZonaAlSistema(ZonaCobertura zona) {

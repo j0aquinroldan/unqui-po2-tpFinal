@@ -28,14 +28,14 @@ public class NivelExpertoTestCase {
 	public void puedeMantenerSuNivelTest() {
 		
 		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(0);
-		assertFalse(nivelExperto.puedeMantenerSuNivel(participante));
+		assertFalse(nivelExperto.debeCambiarSuNivel(participante));
 	}
 	
 	@Test
 	public void puedeMantenerSuNivelTest2() {
 		
 		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(0);
-		assertFalse(nivelExperto.puedeMantenerSuNivel(participante));
+		assertFalse(nivelExperto.debeCambiarSuNivel(participante));
 	}
 	
 	@Test
@@ -44,7 +44,7 @@ public class NivelExpertoTestCase {
 		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(30);
 		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(30);
 		nivelExperto.actualizarNivel(participante);
-		assertTrue(nivelExperto.puedeMantenerSuNivel(participante));
+		assertTrue(nivelExperto.debeCambiarSuNivel(participante));
 	}
 	
 	@Test
@@ -53,7 +53,7 @@ public class NivelExpertoTestCase {
 		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(1);
 		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(1);
 		nivelExperto.actualizarNivel(participante);
-		assertFalse(nivelExperto.puedeMantenerSuNivel(participante));
+		assertFalse(nivelExperto.debeCambiarSuNivel(participante));
 	}
 	
 	@Test

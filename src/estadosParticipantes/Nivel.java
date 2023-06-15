@@ -29,11 +29,19 @@ public abstract class Nivel {
 		this.actualizarNivel(participante); 
 	}
 	
-	public abstract boolean puedeMantenerSuNivel(Participante participante);
 	
 	public abstract boolean isBasico();
 	public abstract boolean isExperto();
 
 	protected abstract boolean puedeOpinar(Muestra m) ;
+	
+	public boolean debeCambiarSuNivel(Participante participante) {
+		return cumpleRevisionesSuficientesParaCambiar(participante)
+				&& cumpleEnviosSuficientesParaCambiar(participante);
+	}
+	
+	public abstract boolean cumpleEnviosSuficientesParaCambiar(Participante participante);
+	
+	public abstract boolean cumpleRevisionesSuficientesParaCambiar(Participante participante);
 }
 

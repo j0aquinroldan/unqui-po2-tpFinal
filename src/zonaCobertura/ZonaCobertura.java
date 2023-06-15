@@ -66,12 +66,17 @@ public class ZonaCobertura {
 	}
 
 	public void seCreoLaMuestra(Muestra muestra) {
-		this.muestrasReportadas.add(muestra);
-		this.organizaciones.stream().forEach(organizacion -> organizacion.cargaRealizada(this, muestra));
+		if (this.leCorrespondeMuestra(muestra)) {
+			this.muestrasReportadas.add(muestra);
+			this.organizaciones.stream().forEach(organizacion -> organizacion.cargaRealizada(this, muestra));
+		}
+		
 	}
 
 	public void seVerificoLaMuestra(Muestra muestra) {
-		this.organizaciones.stream().forEach(organizacion -> organizacion.validacionRealizada(this, muestra));
+		if (this.leCorrespondeMuestra(muestra)) {
+			this.organizaciones.stream().forEach(organizacion -> organizacion.validacionRealizada(this, muestra));
+		}
 	}
 
 	public boolean leCorrespondeMuestra(Muestra muestra) {

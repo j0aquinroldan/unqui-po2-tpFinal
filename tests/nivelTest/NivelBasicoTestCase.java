@@ -30,14 +30,14 @@ public class NivelBasicoTestCase {
 	public void puedeMantenerSuNivelTest() {
 		
 		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(30);
-		assertFalse(nivelBasico.puedeMantenerSuNivel(participante));
+		assertFalse(nivelBasico.debeCambiarSuNivel(participante));
 	}
 	
 	@Test
 	public void puedeMantenerSuNivelTest2() {
 		
 		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(30);
-		assertFalse(nivelBasico.puedeMantenerSuNivel(participante));
+		assertFalse(nivelBasico.debeCambiarSuNivel(participante));
 	}
 	
 	@Test
@@ -46,7 +46,7 @@ public class NivelBasicoTestCase {
 		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(30);
 		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(30);
 		nivelBasico.actualizarNivel(participante);
-		assertFalse(nivelBasico.puedeMantenerSuNivel(participante));
+		assertFalse(nivelBasico.debeCambiarSuNivel(participante));
 	}
 	
 	@Test
@@ -55,7 +55,7 @@ public class NivelBasicoTestCase {
 		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(1);
 		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(1);
 		nivelBasico.actualizarNivel(participante);
-		assertTrue(nivelBasico.puedeMantenerSuNivel(participante));
+		assertTrue(nivelBasico.debeCambiarSuNivel(participante));
 	}
 	
 	@Test
