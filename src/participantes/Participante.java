@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import estadosParticipantes.Nivel;
-import estadosParticipantes.NivelBasico;
 import muestra.Muestra;
+import nivelesParticipantes.Nivel;
+import nivelesParticipantes.NivelBasico;
 import opinion.Opinion;
 import opinion.TipoDeOpinion;
 import ubicacion.Ubicacion;
@@ -14,7 +14,6 @@ import ubicacion.Ubicacion;
 public class Participante {
 
 	private Nivel nivel;
-	private Ubicacion ubicacion;
 	private List<Muestra> envios;
 	private List<Opinion> revisiones;
 
@@ -28,17 +27,9 @@ public class Participante {
 		nivel = new NivelBasico();
 		envios = new ArrayList<>();
 		revisiones = new ArrayList<>();
-		this.ubicacion = ubicacion;
 	}
 
 	// GETS Y SETS
-	public Ubicacion getUbicacion() {
-		return ubicacion;
-	}
-
-	public void setUbicacion(Ubicacion ubicacion) {
-		this.ubicacion = ubicacion;
-	}
 
 	public void setNivel(Nivel nivel) {
 		this.nivel = nivel;
@@ -53,8 +44,8 @@ public class Participante {
 	}
 
 	// OTROS MENSAJES
-	public void recolectar(TipoDeOpinion tipo, LocalDate fecha) {
-		Muestra muestra = new Muestra(this, fecha);
+	public void recolectar(TipoDeOpinion tipo, LocalDate fecha, Ubicacion ubicacion) {
+		Muestra muestra = new Muestra(this, fecha, ubicacion);
 		this.opinar(muestra, tipo, fecha);
 		this.nivel.recolectar(this, muestra);
 	}

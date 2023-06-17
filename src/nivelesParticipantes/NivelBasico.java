@@ -1,8 +1,10 @@
-package estadosParticipantes;
+package nivelesParticipantes;
 
 import java.time.LocalDate;
 
 import muestra.Muestra;
+import opinion.EstadoOpinion;
+import opinion.EstadoOpinionBasico;
 import participantes.Participante;
 
 public class NivelBasico extends Nivel {
@@ -41,6 +43,9 @@ public class NivelBasico extends Nivel {
 	public boolean cumpleRevisionesSuficientesParaCambiar(Participante participante) {
 		return participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now()) > 20;
 	}
-	
 
+	public EstadoOpinion estadoDeOpinion() {
+		return new EstadoOpinionBasico();
+	}
+	
 }

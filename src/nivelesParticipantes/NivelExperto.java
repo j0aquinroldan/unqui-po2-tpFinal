@@ -1,8 +1,10 @@
-package estadosParticipantes;
+package nivelesParticipantes;
 
 import java.time.LocalDate;
 
 import muestra.Muestra;
+import opinion.EstadoOpinion;
+import opinion.EstadoOpinionExperto;
 import participantes.Participante;
 
 public class NivelExperto extends Nivel {
@@ -35,6 +37,11 @@ public class NivelExperto extends Nivel {
 	@Override
 	public boolean puedeOpinar(Muestra m) {
 		return true;
+	}
+
+	@Override
+	public EstadoOpinion estadoDeOpinion() {
+		return new EstadoOpinionExperto();
 	}
 
 }

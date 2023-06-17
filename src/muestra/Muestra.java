@@ -20,21 +20,21 @@ public class Muestra {
 	private EstadoDeMuestra estado;
 
 	// CONSTRUCTORES
-	public Muestra(Participante autor, LocalDate fecha) {
+	public Muestra(Participante autor, LocalDate fecha, Ubicacion ubicacion) {
 		this.verificada = false;
 		this.opiniones = new ArrayList<Opinion>();
 		this.setAutor(autor);
-		this.setUbicacion(autor.getUbicacion());
+		this.setUbicacion(ubicacion);
 		this.fecha = fecha;
 		this.estado = new EstadoMuestraBasico();
 		SistemaVinchucas.instanciaUnica().muestraCreada(this);
 	}
 
-	public Muestra(Participante autor) {
+	public Muestra(Participante autor, Ubicacion ubicacion) {
 		this.verificada = false;
 		this.opiniones = new ArrayList<Opinion>();
 		this.setAutor(autor);
-		this.setUbicacion(autor.getUbicacion());
+		this.setUbicacion(ubicacion);
 		this.fecha = LocalDate.now();
 		this.estado = new EstadoMuestraBasico();
 	}

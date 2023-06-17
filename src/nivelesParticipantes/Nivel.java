@@ -1,8 +1,9 @@
-package estadosParticipantes;
+package nivelesParticipantes;
 
 import java.time.LocalDate;
 
 import muestra.Muestra;
+import opinion.EstadoOpinion;
 import opinion.Opinion;
 import opinion.TipoDeOpinion;
 import participantes.Participante;
@@ -43,5 +44,8 @@ public abstract class Nivel {
 	public abstract boolean cumpleEnviosSuficientesParaCambiar(Participante participante);
 	
 	public abstract boolean cumpleRevisionesSuficientesParaCambiar(Participante participante);
+
+
+	public abstract EstadoOpinion estadoDeOpinion();
 }
 

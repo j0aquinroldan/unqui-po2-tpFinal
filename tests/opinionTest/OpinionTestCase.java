@@ -15,7 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import estadosParticipantes.NivelBasico;
+import nivelesParticipantes.NivelBasico;
 import opinion.Opinion;
 import opinion.TipoDeOpinion;
 import participantes.Participante;

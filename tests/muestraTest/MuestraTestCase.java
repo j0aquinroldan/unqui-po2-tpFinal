@@ -33,8 +33,7 @@ public class MuestraTestCase {
 	public void setup() {
 		p = new Participante(); 
 		u = mock(Ubicacion.class);
-		p.setUbicacion(u);
-		muestra = new Muestra(p);
+		muestra = new Muestra(p, this.u);
 		this.estadoBasico = mock(EstadoMuestraBasico.class);
 	}
 	/*

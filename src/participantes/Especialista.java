@@ -1,7 +1,7 @@
 package participantes;
 
-import estadosParticipantes.Nivel;
-import estadosParticipantes.NivelExperto;
+import nivelesParticipantes.Nivel;
+import nivelesParticipantes.NivelExperto;
 import ubicacion.Ubicacion;
 
 public class Especialista extends Participante {

@@ -5,7 +5,7 @@ import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.Test;
 
-import estadosParticipantes.NivelBasico;
+import nivelesParticipantes.NivelBasico;
 import participantes.Especialista;
 import ubicacion.Ubicacion;
 

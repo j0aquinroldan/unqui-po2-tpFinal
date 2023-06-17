@@ -2,19 +2,19 @@ package opinion;
 
 import java.time.LocalDate;
 
-import estadosParticipantes.Nivel;
+import nivelesParticipantes.Nivel;
 import participantes.Participante;
 
 public class Opinion {
 	private TipoDeOpinion tipoDeOpinion;
-	private Nivel nivel;
+	private EstadoOpinion estado;
 	private Participante autor;
 	private LocalDate fechaDeCreacion;
 
 	public Opinion(TipoDeOpinion tipoDeOpinion, Participante autor, LocalDate fechaDeCreacion) {
 		this.tipoDeOpinion = tipoDeOpinion;
 		this.autor = autor;
-		this.nivel = autor.getNivel(); 
+		this.estado = autor.getNivel().estadoDeOpinion(); 
 		this.fechaDeCreacion = fechaDeCreacion;
 	}
 
@@ -31,11 +31,15 @@ public class Opinion {
 	}
 
 	public boolean isBasico() {
-		return nivel.isBasico();
+		return getEstado().isBasico();
 	}
 
 	public boolean isExperto() {
-		return nivel.isExperto();
+		return getEstado().isExperto();
+	}
+
+	public EstadoOpinion getEstado() {
+		return estado;
 	}
 
 }

@@ -8,15 +8,16 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import estadosParticipantes.Nivel;
-import estadosParticipantes.NivelBasico;
-import estadosParticipantes.NivelExperto;
 import muestra.Muestra;
+import nivelesParticipantes.Nivel;
+import nivelesParticipantes.NivelBasico;
+import nivelesParticipantes.NivelExperto;
 import opinion.Opinion;
 import opinion.TipoDeOpinion;
 import participantes.Participante;
@@ -44,7 +45,6 @@ public class ParticipanteTestsCase {
 	 */
 	@Test
 	public void constructorTest() {
-		assertEquals(ubicacion, participante.getUbicacion()); // misma ubicacion con la que se seteo
 		assertTrue(participante.getNivel().isBasico());
 	}
 
@@ -69,22 +69,16 @@ public class ParticipanteTestsCase {
 	}
 
 	@Test
-	public void setUbicacionTest() {
-		participante.setUbicacion(ubicacion);
-		assertEquals(ubicacion, participante.getUbicacion());
+	public void getRevisionesTest() {
+
+		assertEquals(new ArrayList<>(), participante.getRevisiones());
 	}
 
-//	@Test
-//	public void getRevisionesTest() {
-//
-//		assertEquals(new ArrayList<>(), participante.getRevisiones());
-//	}
-//
-//	@Test
-//	public void getEnviosTest() {
-//
-//		assertEquals(new ArrayList<>(), participante.getEnvios());
-//	}
+	@Test
+	public void getEnviosTest() {
+
+		assertEquals(new ArrayList<>(), participante.getEnvios());
+	}
 
 	@Test
 	public void agregarMuestraTest() {
@@ -172,7 +166,7 @@ public class ParticipanteTestsCase {
 		
 		assertTrue(participante.getEnvios().isEmpty());
 
-		participante.recolectar(TipoDeOpinion.CHINCHE_FOLIADA, LocalDate.of(2023, 6, 4));
+		participante.recolectar(TipoDeOpinion.CHINCHE_FOLIADA, LocalDate.of(2023, 6, 4), this.ubicacion);
 
 		assertFalse(participante.getEnvios().isEmpty());
 	}

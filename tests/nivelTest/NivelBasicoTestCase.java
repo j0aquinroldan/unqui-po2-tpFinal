@@ -11,8 +11,8 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import estadosParticipantes.NivelBasico;
-import estadosParticipantes.NivelExperto;
+import nivelesParticipantes.NivelBasico;
+import nivelesParticipantes.NivelExperto;
 import participantes.Participante;
 
 public class NivelBasicoTestCase {

@@ -21,10 +21,8 @@ public class EstadoMuestraBasico extends EstadoDeMuestra {
 	@Override
 	public void verificarOActualizar(Muestra muestra, Opinion opinion) {
 		// actualiza el estado de la muestra si puede (opinion es de experto)
-		if (opinion.isExperto()) {
-			muestra.setEstado(new EstadoMuestraExperto());
+		opinion.getEstado().actualizarMuestra(muestra);
 		}
-	}
 
 	@Override
 	public boolean isExperto() {

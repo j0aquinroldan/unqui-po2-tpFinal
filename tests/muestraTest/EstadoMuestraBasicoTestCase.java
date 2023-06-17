@@ -22,6 +22,7 @@ import muestra.Muestra;
 import opinion.Opinion;
 import opinion.TipoDeOpinion;
 import participantes.Participante;
+import ubicacion.Ubicacion;
 
 public class EstadoMuestraBasicoTestCase {
 	private EstadoMuestraBasico estadoBasico;
@@ -31,10 +32,12 @@ public class EstadoMuestraBasicoTestCase {
 	@Mock private Opinion op3;
 	@Mock private Opinion op4;
 	@Mock private Opinion op5;
+	@Mock private Ubicacion ubicacion;
 	
 	@BeforeEach
 	public void setUp() {
 		this.estadoBasico = new EstadoMuestraBasico();
+		this.ubicacion = mock(Ubicacion.class);
 		this.muestra = mock(Muestra.class);
 		this.op1 = mock(Opinion.class);
 		this.op2 = mock(Opinion.class);
@@ -45,14 +48,14 @@ public class EstadoMuestraBasicoTestCase {
 	
 	@Test
 	public void testElEstadoSeActualizaDeBasicoAExperto() {
-		Muestra muestraParaTestear = new Muestra(mock(Participante.class)); //Se creo una instancia particular de Muestra para poder testear el cambio de estado de forma dinamica
+		Muestra muestraParaTestear = new Muestra(mock(Participante.class), ubicacion); //Se creo una instancia particular de Muestra para poder testear el cambio de estado de forma dinamica
 		when(this.op3.isExperto()).thenReturn(true);
 		this.estadoBasico.verificarOActualizar(muestraParaTestear, op3);
 		assertTrue(muestraParaTestear.getEstado().isExperto());
 	}
 	@Test
 	public void testElEstadoNoSeActualizaDeBasicoAExperto() {
-		Muestra muestraParaTestear = new Muestra(mock(Participante.class)); //Se creo una instancia particular de Muestra para poder testear el cambio de estado de forma dinamica
+		Muestra muestraParaTestear = new Muestra(mock(Participante.class), ubicacion); //Se creo una instancia particular de Muestra para poder testear el cambio de estado de forma dinamica
 		when(this.op3.isExperto()).thenReturn(false);
 		this.estadoBasico.verificarOActualizar(muestraParaTestear, op3);
 		assertFalse(muestraParaTestear.getEstado().isExperto());

@@ -3,6 +3,7 @@ package nivelTest;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import estadosParticipantes.NivelExperto;
+import nivelesParticipantes.NivelExperto;
 import participantes.Participante;
 
 public class NivelExpertoTestCase {
@@ -25,17 +26,17 @@ public class NivelExpertoTestCase {
 	}
 	
 	@Test
-	public void puedeMantenerSuNivelTest() {
+	public void debeCambiarSuNivelTest() {
 		
 		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(0);
-		assertFalse(nivelExperto.debeCambiarSuNivel(participante));
+		assertTrue(nivelExperto.debeCambiarSuNivel(participante));
 	}
 	
 	@Test
-	public void puedeMantenerSuNivelTest2() {
+	public void debeCambiarSuNivelTest2() {
 		
 		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(0);
-		assertFalse(nivelExperto.debeCambiarSuNivel(participante));
+		assertTrue(nivelExperto.debeCambiarSuNivel(participante));
 	}
 	
 	@Test
@@ -44,7 +45,7 @@ public class NivelExpertoTestCase {
 		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(30);
 		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(30);
 		nivelExperto.actualizarNivel(participante);
-		assertTrue(nivelExperto.debeCambiarSuNivel(participante));
+		assertFalse(nivelExperto.debeCambiarSuNivel(participante));
 	}
 	
 	@Test
@@ -53,7 +54,7 @@ public class NivelExpertoTestCase {
 		when(participante.cantEnviosDeLosUltimos30Dias(LocalDate.now())).thenReturn(1);
 		when(participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())).thenReturn(1);
 		nivelExperto.actualizarNivel(participante);
-		assertFalse(nivelExperto.debeCambiarSuNivel(participante));
+		assertTrue(nivelExperto.debeCambiarSuNivel(participante));
 	}
 	
 	@Test
