@@ -56,18 +56,6 @@ public class ParticipanteTestsCase {
 		assertTrue(participante.getNivel().isBasico());
 	}
 
-	/*
-	 * cuando un se genera una opinion, esta considera el estado del
-	 * participante(básico o experto) al momento del voto
-	 */
-	@Test
-	public void opinionMantieneElNivelConElQueFueCreada() {
-//		participante.setNivel(new NivelBasico());
-		Opinion op = new Opinion(TipoDeOpinion.CHINCHE_FOLIADA, participante, LocalDate.now());
-		participante.setNivel(new NivelExperto());
-		assertTrue(op.isBasico());
-	}
-
 	@Test
 	public void getRevisionesTest() {
 

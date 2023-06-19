@@ -3,8 +3,9 @@ package nivelesParticipantes;
 import java.time.LocalDate;
 
 import muestra.Muestra;
-import opinion.EstadoOpinion;
-import opinion.EstadoOpinionExperto;
+import opinion.Opinion;
+import opinion.OpinionExperta;
+import opinion.TipoDeOpinion;
 import participantes.Participante;
 
 public class NivelExperto extends Nivel {
@@ -40,8 +41,13 @@ public class NivelExperto extends Nivel {
 	}
 
 	@Override
-	public EstadoOpinion estadoDeOpinion() {
-		return new EstadoOpinionExperto();
+	public Opinion crearOpinion(TipoDeOpinion tipoDeOpinion, Participante p, LocalDate fechaDeCreacion) {
+		return new OpinionExperta(tipoDeOpinion, p, fechaDeCreacion);
+	}
+	
+	public boolean debeCambiarSuNivel(Participante participante) {
+		return cumpleRevisionesSuficientesParaCambiar(participante)
+				|| cumpleEnviosSuficientesParaCambiar(participante);
 	}
 
 }

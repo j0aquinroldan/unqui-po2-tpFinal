@@ -20,6 +20,7 @@ import muestra.EstadoMuestraBasico;
 import muestra.EstadoMuestraExperto;
 import muestra.Muestra;
 import opinion.Opinion;
+import opinion.OpinionExperta;
 import opinion.TipoDeOpinion;
 import participantes.Participante;
 import ubicacion.Ubicacion;
@@ -29,7 +30,7 @@ public class EstadoMuestraBasicoTestCase {
 	@Mock private Muestra muestra;
 	@Mock private Opinion op1;
 	@Mock private Opinion op2;
-	@Mock private Opinion op3;
+	@Mock private OpinionExperta op3;
 	@Mock private Opinion op4;
 	@Mock private Opinion op5;
 	@Mock private Ubicacion ubicacion;
@@ -41,7 +42,7 @@ public class EstadoMuestraBasicoTestCase {
 		this.muestra = mock(Muestra.class);
 		this.op1 = mock(Opinion.class);
 		this.op2 = mock(Opinion.class);
-		this.op3 = mock(Opinion.class);
+		this.op3 = mock(OpinionExperta.class);
 		this.op4 = mock(Opinion.class);
 		this.op5 = mock(Opinion.class);
 	}
@@ -49,9 +50,8 @@ public class EstadoMuestraBasicoTestCase {
 	@Test
 	public void testElEstadoSeActualizaDeBasicoAExperto() {
 		Muestra muestraParaTestear = new Muestra(mock(Participante.class), ubicacion); //Se creo una instancia particular de Muestra para poder testear el cambio de estado de forma dinamica
-		when(this.op3.isExperto()).thenReturn(true);
 		this.estadoBasico.verificarOActualizar(muestraParaTestear, op3);
-		assertTrue(muestraParaTestear.getEstado().isExperto());
+		verify(op3, times(1)).actualizarMuestra(muestraParaTestear);
 	}
 	@Test
 	public void testElEstadoNoSeActualizaDeBasicoAExperto() {

@@ -3,8 +3,9 @@ package nivelesParticipantes;
 import java.time.LocalDate;
 
 import muestra.Muestra;
-import opinion.EstadoOpinion;
-import opinion.EstadoOpinionBasico;
+import opinion.Opinion;
+import opinion.OpinionBasica;
+import opinion.TipoDeOpinion;
 import participantes.Participante;
 
 public class NivelBasico extends Nivel {
@@ -27,11 +28,6 @@ public class NivelBasico extends Nivel {
 	} 
 
 	@Override
-	public boolean debeCambiarSuNivel(Participante participante) {
-		return (participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now())) < 20 && (participante.cantEnviosDeLosUltimos30Dias(LocalDate.now()) < 10);
-	}
-
-	@Override
 	protected boolean puedeOpinar(Muestra m) {
 		return m.soloOpinaronBasicos();
 	}
@@ -44,8 +40,9 @@ public class NivelBasico extends Nivel {
 		return participante.cantRevisionesDeLosUltimos30Dias(LocalDate.now()) > 20;
 	}
 
-	public EstadoOpinion estadoDeOpinion() {
-		return new EstadoOpinionBasico();
+	@Override
+	public Opinion crearOpinion(TipoDeOpinion tipoDeOpinion, Participante p, LocalDate fechaDeCreacion) {
+		return new OpinionBasica(tipoDeOpinion, p, fechaDeCreacion);
 	}
 	
 }

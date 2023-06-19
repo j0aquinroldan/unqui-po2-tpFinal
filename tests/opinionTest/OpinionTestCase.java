@@ -1,9 +1,11 @@
 package opinionTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -13,36 +15,73 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 
+import muestra.EstadoDeMuestra;
+import muestra.EstadoMuestraExperto;
+import muestra.Muestra;
 import nivelesParticipantes.NivelBasico;
 import opinion.Opinion;
+import opinion.OpinionBasica;
+import opinion.OpinionExperta;
 import opinion.TipoDeOpinion;
 import participantes.Participante;
 
+
 public class OpinionTestCase {
-	private Opinion opinion;
+	private Opinion opinionBasica;
+	private Opinion opinionExperta;
 	@Mock private Participante participante;
+	@Mock private Muestra muestra;
+	private ArgumentCaptor<EstadoMuestraExperto> argumentCaptor;
 	
 	@BeforeEach
 	public void setUp() {
+		this.argumentCaptor = ArgumentCaptor.forClass(EstadoMuestraExperto.class);
 		this.participante = mock(Participante.class);
+		this.opinionBasica = new OpinionBasica(TipoDeOpinion.VINCHUCA_INFESTANS, participante, LocalDate.of(2020, 3, 10));
+		this.opinionExperta = new OpinionExperta(TipoDeOpinion.VINCHUCA_INFESTANS, participante, LocalDate.of(2020, 3, 10));
+		this.muestra = mock(Muestra.class);
 	}
 	
 	@Test
 	public void testConstructor() {
-		when(this.participante.getNivel()).thenReturn(new NivelBasico());
-		this.opinion = new Opinion(TipoDeOpinion.VINCHUCA_INFESTANS, participante, LocalDate.of(2020, 3, 10));
-		assertEquals(TipoDeOpinion.VINCHUCA_INFESTANS, this.opinion.getTipoDeOpinion());
-		assertEquals(this.participante, this.opinion.getAutor());
-		assertTrue(this.opinion.isBasico());
-		assertEquals(LocalDate.of(2020, 3, 10), this.opinion.getFecha());
+		assertEquals(TipoDeOpinion.VINCHUCA_INFESTANS, this.opinionBasica.getTipoDeOpinion());
+		assertEquals(this.participante, this.opinionBasica.getAutor());
+		assertTrue(this.opinionBasica.isBasico());
+		assertEquals(LocalDate.of(2020, 3, 10), this.opinionBasica.getFecha());
 	}
 	
 	@Test
-	public void testCuandoSuAutorEsExpertoLaOpinionTambienLoEs() {
-		when(this.participante.getNivel()).thenReturn(new NivelBasico());
-		this.opinion = new Opinion(TipoDeOpinion.VINCHUCA_INFESTANS, participante, LocalDate.of(2020, 3, 10));
-		assertTrue(this.opinion.isBasico());
+	public void testIsBasico() {
+		assertTrue(this.opinionBasica.isBasico());
+	}
+	
+	@Test
+	public void testIsExperto() {
+		assertTrue(this.opinionExperta.isExperto());
+	}
+	
+	@Test
+	public void testIsBasicoFalso() {
+		assertFalse(this.opinionBasica.isExperto());
+	}
+	
+	@Test
+	public void testIsExpertoFalse() {
+		assertFalse(this.opinionExperta.isBasico());
+	}
+	
+	@Test 
+	public void testActualizarMuestraConOpinionBasica() {
+		this.opinionBasica.actualizarMuestra(this.muestra);
+		verifyZeroInteractions(this.muestra);
+	}
+	
+	@Test 
+	public void testActualizarMuestraConOpinionExperta() {
+		this.opinionExperta.actualizarMuestra(this.muestra);
+		verify(muestra, times(1)).setEstado(argumentCaptor.capture());
 	}
 }

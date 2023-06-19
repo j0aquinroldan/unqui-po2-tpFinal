@@ -3,7 +3,6 @@ package nivelesParticipantes;
 import java.time.LocalDate;
 
 import muestra.Muestra;
-import opinion.EstadoOpinion;
 import opinion.Opinion;
 import opinion.TipoDeOpinion;
 import participantes.Participante;
@@ -13,14 +12,16 @@ public abstract class Nivel {
 	public void opinar(Participante p, Muestra m, TipoDeOpinion tipoDeOpinion, LocalDate fechaDeCreacion) {
 		
 		if(!m.fueOpinadaPor(p) && this.puedeOpinar(m) && !m.isVerificada()) {
-			
-			Opinion o = new Opinion(tipoDeOpinion,p, fechaDeCreacion);
-			p.agregarOpinion(o); 
-			m.agregarOpinion(o); 
+			Opinion nuevaOpinion = this.crearOpinion(tipoDeOpinion, p, fechaDeCreacion);
+			p.agregarOpinion(nuevaOpinion); 
+			m.agregarOpinion(nuevaOpinion); 
 			
 			this.actualizarNivel(p); 
 		}
 	}
+
+
+	protected abstract Opinion crearOpinion(TipoDeOpinion tipoDeOpinion, Participante p, LocalDate fechaDeCreacion);
 
 
 	protected abstract void actualizarNivel(Participante p);
@@ -45,7 +46,5 @@ public abstract class Nivel {
 	
 	public abstract boolean cumpleRevisionesSuficientesParaCambiar(Participante participante);
 
-
-	public abstract EstadoOpinion estadoDeOpinion();
 }
 

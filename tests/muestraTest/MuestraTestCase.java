@@ -129,5 +129,11 @@ public class MuestraTestCase {
 		assertTrue(muestra.isVerificada());
 	}
 	
+	@Test
+	public void getFechaTest() {
+		this.muestra = new Muestra(p, LocalDate.of(2000, 10, 1), u);
+		assertEquals(this.muestra.getFecha(), LocalDate.of(2000, 10, 1));
+	}
+	
 	
 }
