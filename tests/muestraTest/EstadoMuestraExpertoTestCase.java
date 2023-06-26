@@ -54,9 +54,4 @@ public class EstadoMuestraExpertoTestCase {
 		verify(this.muestra, times(0)).setVerificada();
 	}
 	//La existencia de al menos una opinion experta esta asegurada por el mismo estado, que de no ser porque se agrego una opinion basica, nunca se actualizaria a experto.
-	
-	@Test 
-	public void testEsExpertoVerdadero(){
-		assertTrue(this.estadoExperto.isExperto());
-	}
 }

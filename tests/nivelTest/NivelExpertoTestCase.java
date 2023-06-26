@@ -63,16 +63,6 @@ public class NivelExpertoTestCase {
 	}
 	
 	@Test
-	public void isBasicoTest() {
-		assertFalse(nivelExperto.isBasico());
-	}
-	
-	@Test
-	public void isExpertoTest() {
-		assertTrue(nivelExperto.isExperto());
-	}
-	
-	@Test
 	public void puedeOpinarTest() {
 		assertTrue(nivelExperto.puedeOpinar(null));
 	}

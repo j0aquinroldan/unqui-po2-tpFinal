@@ -47,6 +47,6 @@ public abstract class EstadoDeMuestra {
 	        return tipoConMasApariciones;
 	    }
 
-	public abstract boolean isExperto();
+	public abstract boolean soloOpinaronBasicos();
 
 }

@@ -58,12 +58,7 @@ public class EstadoMuestraBasicoTestCase {
 		Muestra muestraParaTestear = new Muestra(mock(Participante.class), ubicacion); //Se creo una instancia particular de Muestra para poder testear el cambio de estado de forma dinamica
 		when(this.op3.isExperto()).thenReturn(false);
 		this.estadoBasico.verificarOActualizar(muestraParaTestear, op3);
-		assertFalse(muestraParaTestear.getEstado().isExperto());
-	}
-	
-	@Test 
-	public void testEsExpertoFalso(){
-		assertFalse(this.estadoBasico.isExperto());
+		assertFalse(muestraParaTestear.getEstado() instanceof EstadoMuestraExperto);
 	}
 	
 	@Test

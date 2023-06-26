@@ -16,8 +16,11 @@ import org.junit.jupiter.api.Test;
 
 import muestra.EstadoDeMuestra;
 import muestra.EstadoMuestraBasico;
+import muestra.EstadoMuestraExperto;
 import muestra.Muestra;
 import opinion.Opinion;
+import opinion.OpinionBasica;
+import opinion.OpinionExperta;
 import opinion.TipoDeOpinion;
 import participantes.Participante;
 import ubicacion.Ubicacion;
@@ -69,23 +72,13 @@ public class MuestraTestCase {
 	
 	@Test
 	public void testSoloOpinaronBasicosVerdadero() {
-		Opinion opinion1 = mock(Opinion.class);
-		Opinion opinion2 = mock(Opinion.class);
-		when(opinion1.isBasico()).thenReturn(true);
-		when(opinion2.isBasico()).thenReturn(true);
-		this.muestra.agregarOpinion(opinion1);
-		this.muestra.agregarOpinion(opinion2);
+		this.muestra.agregarOpinion(new OpinionBasica(TipoDeOpinion.CHINCHE_FOLIADA, p, LocalDate.now()));
 		assertTrue(this.muestra.soloOpinaronBasicos());
 	}
 	
 	@Test
 	public void testSoloOpinaronBasicosFalso() {
-		Opinion opinion1 = mock(Opinion.class);
-		Opinion opinion2 = mock(Opinion.class);
-		when(opinion1.isBasico()).thenReturn(false);
-		when(opinion2.isBasico()).thenReturn(true);
-		this.muestra.agregarOpinion(opinion1);
-		this.muestra.agregarOpinion(opinion2);
+		this.muestra.agregarOpinion(new OpinionExperta(TipoDeOpinion.CHINCHE_FOLIADA, p, LocalDate.now()));
 		assertFalse(this.muestra.soloOpinaronBasicos());
 	}
 	

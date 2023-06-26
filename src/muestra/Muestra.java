@@ -99,7 +99,7 @@ public class Muestra {
 	}
 
 	public boolean soloOpinaronBasicos() {
-		return this.getOpiniones().stream().allMatch(opinion -> opinion.isBasico());
+		return this.getEstado().soloOpinaronBasicos();
 	}
 
 	public List<Opinion> getOpinionesExpertas() {

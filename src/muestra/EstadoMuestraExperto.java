@@ -28,8 +28,8 @@ public class EstadoMuestraExperto extends EstadoDeMuestra {
 	}
 
 	@Override
-	public boolean isExperto() {
-		return true;
+	public boolean soloOpinaronBasicos() {
+		return false;
 	} 
 
 }

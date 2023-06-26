@@ -11,10 +11,6 @@ public class OpinionBasica extends Opinion {
 		super(tipoDeOpinion, autor, fechaDeCreacion);
 	}
 
-	@Override
-	public boolean isBasico() {
-		return true;
-	}
 
 	@Override
 	public boolean isExperto() {

@@ -17,6 +17,7 @@ import org.mockito.ArgumentCaptor;
 import muestra.EstadoMuestraExperto;
 import nivelesParticipantes.NivelBasico;
 import nivelesParticipantes.NivelExperto;
+import opinion.OpinionBasica;
 import participantes.Participante;
 
 public class NivelBasicoTestCase {
@@ -68,18 +69,8 @@ public class NivelBasicoTestCase {
 	}
 	
 	@Test
-	public void isBasicoTest() {
-		assertTrue(nivelBasico.isBasico());
-	}
-	
-	@Test
-	public void isExpertoTest() {
-		assertFalse(nivelBasico.isExperto());
-	}
-	
-	@Test
 	public void testCuandoElNivelBasicoCreaUnaOpinionEstaEsBasica() {
-		assertTrue(this.nivelBasico.crearOpinion(null, participante, null).isBasico());
+		assertTrue(this.nivelBasico.crearOpinion(null, participante, null) instanceof OpinionBasica);
 	}
 
 }

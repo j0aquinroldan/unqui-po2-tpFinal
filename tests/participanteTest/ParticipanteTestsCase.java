@@ -45,7 +45,7 @@ public class ParticipanteTestsCase {
 	 */
 	@Test
 	public void constructorTest() {
-		assertTrue(participante.getNivel().isBasico());
+		assertTrue(participante.getNivel() instanceof NivelBasico);
 	}
 
 	@Test
@@ -53,7 +53,7 @@ public class ParticipanteTestsCase {
 		participante = new Participante();
 		assertTrue(participante.getEnvios().isEmpty());
 		assertTrue(participante.getRevisiones().isEmpty());
-		assertTrue(participante.getNivel().isBasico());
+		assertTrue(participante.getNivel() instanceof NivelBasico);
 	}
 
 	@Test

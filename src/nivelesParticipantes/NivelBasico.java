@@ -9,15 +9,6 @@ import opinion.TipoDeOpinion;
 import participantes.Participante;
 
 public class NivelBasico extends Nivel {
-	@Override
-	public boolean isBasico() {
-		return true;
-	}
-
-	@Override
-	public boolean isExperto() {
-		return false;
-	}
 
 	@Override
 	public void actualizarNivel(Participante participante) {

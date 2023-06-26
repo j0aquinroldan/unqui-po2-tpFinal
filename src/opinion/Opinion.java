@@ -29,8 +29,6 @@ public abstract class Opinion {
 		return tipoDeOpinion;
 	}
 
-	public abstract boolean isBasico() ;
-
 	public abstract boolean isExperto();
 
 	public abstract void actualizarMuestra(Muestra muestra);

@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 import org.junit.jupiter.api.Test;
 
 import nivelesParticipantes.NivelBasico;
+import nivelesParticipantes.NivelExperto;
 import participantes.Especialista;
 import ubicacion.Ubicacion;
 
@@ -16,11 +17,11 @@ public class EspecialistaTestCase {
 		
 		Especialista e = new Especialista(mock(Ubicacion.class));
 		
-		assertTrue(e.getNivel().isExperto());
+		assertTrue(e.getNivel() instanceof NivelExperto);
 		
 		e.setNivel(new NivelBasico());
 		
-		assertTrue(e.getNivel().isExperto());
+		assertTrue(e.getNivel() instanceof NivelExperto);
 		
 	}
 }

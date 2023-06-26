@@ -11,16 +11,6 @@ import participantes.Participante;
 public class NivelExperto extends Nivel {
 
 	@Override
-	public boolean isBasico() {
-		return false;
-	}
-
-	@Override
-	public boolean isExperto() {
-		return true;
-	}
-
-	@Override
 	public void actualizarNivel(Participante participante) {
 		if (this.debeCambiarSuNivel(participante)) {
 			participante.setNivel(new NivelBasico());

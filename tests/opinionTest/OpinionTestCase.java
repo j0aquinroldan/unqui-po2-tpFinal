@@ -49,28 +49,17 @@ public class OpinionTestCase {
 	public void testConstructor() {
 		assertEquals(TipoDeOpinion.VINCHUCA_INFESTANS, this.opinionBasica.getTipoDeOpinion());
 		assertEquals(this.participante, this.opinionBasica.getAutor());
-		assertTrue(this.opinionBasica.isBasico());
 		assertEquals(LocalDate.of(2020, 3, 10), this.opinionBasica.getFecha());
 	}
-	
-	@Test
-	public void testIsBasico() {
-		assertTrue(this.opinionBasica.isBasico());
-	}
-	
+
 	@Test
 	public void testIsExperto() {
 		assertTrue(this.opinionExperta.isExperto());
 	}
 	
 	@Test
-	public void testIsBasicoFalso() {
-		assertFalse(this.opinionBasica.isExperto());
-	}
-	
-	@Test
 	public void testIsExpertoFalse() {
-		assertFalse(this.opinionExperta.isBasico());
+		assertFalse(this.opinionBasica.isExperto());
 	}
 	
 	@Test 

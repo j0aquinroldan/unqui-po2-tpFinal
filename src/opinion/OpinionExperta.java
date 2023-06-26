@@ -13,11 +13,6 @@ public class OpinionExperta extends Opinion {
 	}
 
 	@Override
-	public boolean isBasico() {
-		return false;
-	}
-
-	@Override
 	public boolean isExperto() {
 		return true;
 	}
