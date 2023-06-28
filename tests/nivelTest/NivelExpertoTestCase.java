@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 import nivelesParticipantes.NivelExperto;
+import opinion.OpinionExperta;
 import participantes.Participante;
 
 public class NivelExpertoTestCase {
@@ -69,7 +70,7 @@ public class NivelExpertoTestCase {
 	
 	@Test
 	public void testCuandoElNivelExpertoCreaUnaOpinionEstaEsExperta() {
-		assertTrue(this.nivelExperto.crearOpinion(null, participante, null).isExperto());
+		assertTrue(this.nivelExperto.crearOpinion(null, participante, null) instanceof OpinionExperta);
 	}
 
 }

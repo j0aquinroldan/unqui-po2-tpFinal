@@ -2,7 +2,6 @@ package muestraTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -10,7 +9,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +18,7 @@ import muestra.EstadoMuestraBasico;
 import muestra.EstadoMuestraExperto;
 import muestra.Muestra;
 import opinion.Opinion;
+import opinion.OpinionBasica;
 import opinion.OpinionExperta;
 import opinion.TipoDeOpinion;
 import participantes.Participante;
@@ -43,7 +42,7 @@ public class EstadoMuestraBasicoTestCase {
 		this.op1 = mock(Opinion.class);
 		this.op2 = mock(Opinion.class);
 		this.op3 = mock(OpinionExperta.class);
-		this.op4 = mock(Opinion.class);
+		this.op4 = mock(OpinionBasica.class);
 		this.op5 = mock(Opinion.class);
 	}
 	
@@ -56,8 +55,7 @@ public class EstadoMuestraBasicoTestCase {
 	@Test
 	public void testElEstadoNoSeActualizaDeBasicoAExperto() {
 		Muestra muestraParaTestear = new Muestra(mock(Participante.class), ubicacion); //Se creo una instancia particular de Muestra para poder testear el cambio de estado de forma dinamica
-		when(this.op3.isExperto()).thenReturn(false);
-		this.estadoBasico.verificarOActualizar(muestraParaTestear, op3);
+		this.estadoBasico.verificarOActualizar(muestraParaTestear, op4); // llega una opinion basica por tanto no debe actualizar el estado
 		assertFalse(muestraParaTestear.getEstado() instanceof EstadoMuestraExperto);
 	}
 	

@@ -2,10 +2,10 @@ package muestra;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import opinion.Opinion;
+import opinion.OpinionExperta;
 import opinion.TipoDeOpinion;
 import participantes.Participante;
 import sistemaVinchucas.SistemaVinchucas;
@@ -103,7 +103,7 @@ public class Muestra {
 	}
 
 	public List<Opinion> getOpinionesExpertas() {
-		return this.opiniones.stream().filter(opinion -> opinion.isExperto()).toList();
+		return this.opiniones.stream().filter(opinion -> opinion instanceof OpinionExperta).toList();
 	}
 
 	public List<Muestra> muestrasQueEstenAUnaDistanciaMenorA(List<Muestra> listaDeMuestras, double kilometros) {
