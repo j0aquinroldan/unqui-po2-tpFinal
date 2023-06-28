@@ -13,11 +13,6 @@ public class OpinionExperta extends Opinion {
 	}
 
 	@Override
-	public boolean isExperto() {
-		return true;
-	}
-
-	@Override
 	public void actualizarMuestra(Muestra muestra) {
 		muestra.setEstado(new EstadoMuestraExperto());
 	}

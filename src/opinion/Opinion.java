@@ -3,7 +3,6 @@ package opinion;
 import java.time.LocalDate;
 
 import muestra.Muestra;
-import nivelesParticipantes.Nivel;
 import participantes.Participante;
 
 public abstract class Opinion {
@@ -29,9 +28,6 @@ public abstract class Opinion {
 		return tipoDeOpinion;
 	}
 
-	public abstract boolean isExperto();
-
 	public abstract void actualizarMuestra(Muestra muestra);
-
 
 }

@@ -11,15 +11,9 @@ public class OpinionBasica extends Opinion {
 		super(tipoDeOpinion, autor, fechaDeCreacion);
 	}
 
-
-	@Override
-	public boolean isExperto() {
-		return false;
-	}
-
 	@Override
 	public void actualizarMuestra(Muestra muestra) {
-		
+
 	}
 
 }
