@@ -6,8 +6,8 @@ import ubicacion.Ubicacion;
 
 public class Especialista extends Participante {
 	
-	public Especialista(Ubicacion u) {
-		super(u);
+	public Especialista() {
+		super();
 		super.setNivel(new NivelExperto());
 	}
 	

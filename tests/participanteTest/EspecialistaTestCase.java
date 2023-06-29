@@ -15,7 +15,7 @@ public class EspecialistaTestCase {
 	@Test
 	public void setNivelTest() {
 		
-		Especialista e = new Especialista(mock(Ubicacion.class));
+		Especialista e = new Especialista();
 		
 		assertTrue(e.getNivel() instanceof NivelExperto);
 		

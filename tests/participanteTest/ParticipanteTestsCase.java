@@ -35,7 +35,7 @@ public class ParticipanteTestsCase {
 	public void setup() {
 		ubicacion = mock(Ubicacion.class);
 		nb = mock(NivelBasico.class);
-		participante = new Participante(ubicacion);
+		participante = new Participante();
 		opinion = mock(Opinion.class);
 		muestra = mock(Muestra.class);
 	}
